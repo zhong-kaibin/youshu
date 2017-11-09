@@ -1,0 +1,5 @@
+<!--pages/test.wxml-->
+<view>
+  <image class='index-bg' mode='widthFix' src='https://ssl.kdyoushu.com/applet/mind_test/at_index.png'></image>
+  <view bindtap='naviToTest'  class='start-btn'>点击开始</view>
+</view>

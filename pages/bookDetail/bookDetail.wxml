@@ -1,0 +1,60 @@
+<!--pages/bookDetail/bookDetail.wxml-->
+<!-- <import src="../common/head.wxml" />
+<template is="head" data="{{title: dateil.bookName }}"/> -->
+<import src="../common/pop.wxml"/>
+
+<template is="pop" data="{{...bindPop}}"/>
+<view class="page-section">
+  <view class='dateil-hd'>
+    <image class='dateil-img' wx:if='{{detail.cover}}'  src="{{detail.cover}}" />
+    <text class='dateil-title'>{{detail.book_name}}</text>
+    <view>
+      <text></text>作者：
+      <text class='name'>{{detail.author_name}}</text>
+    </view>
+    <view>
+      <text>分类：{{detail.cate_name}}</text>
+    </view>
+    <view>
+      <text>字数：{{detail.word_count}}</text>
+    </view>
+    <view class='st'>
+      <text class='status left'>连载状态：{{detail.status == 1 ? '已完结' : '未完结'}} 
+      </text>
+      <text class='name left'>{{detail.update_time}} </text>
+      <text class='left'>更新</text>
+    </view>
+  </view>
+  <view class='dateil-body'>
+    <text class='dateil-text lue'>{{detail.intro}}</text>
+    <!-- <text class='open'>展开</text> -->
+  </view>
+  <button bindtap='goChapter' class='btn-catalog'>查看目录页（共{{detail.chapter_num}}章）</button>
+</view>
+
+<view class="page-section1">
+  <view class='section-title'>
+    <text>看过这本书的人还在看</text>
+  </view>
+  <view class='list'>
+    <block wx:key="{{item.book_id}}" wx:for="{{like_book_list}}">
+      <view data-book_id='{{item.book_id}}' class='list-item' bindtap='goOtherBook'>
+          <image class='item-img' mode="widthFix" src="{{item.cover}}" />
+          <text class='item-title'>{{item.book_name}}</text>
+      </view>
+
+    </block>
+  </view>
+</view>
+<view class='page-section1 page-s2'>
+<view class="book-relate">图书相关信息</view>
+<view class='book_resoure'>版权来源： <text> {{detail.source}}</text></view>
+<view class='book_prop'>免责声明： 本书数字版权由“{{detail.source}}”提供，并由其授权本软件制作发行，若书中有不良信息，请及时告知客服。</view>
+</view>
+<view class='foot'>
+  <text class='foot-l {{is_myself === 1 ? "inShelf" : "" }}'  
+  bindtap='{{is_myself === 1 ?  "" : "addToShelf" }}'>{{is_myself === 1 ?  "已在书架" : "加入书架"}}</text>
+  <form class='foot-r' bindsubmit="bindpopsubmit" report-submit='true'>
+    <button formType='submit' bindtap="openReader" >{{index ? '继续阅读' : '开始阅读'}}</button>
+  </form>
+</view>

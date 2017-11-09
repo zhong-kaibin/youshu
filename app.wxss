@@ -1,0 +1,226 @@
+/**app.wxss**/
+page{
+  font-family: "微软雅黑";
+}
+image{
+  height: auto
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+/**head.wxml**/
+.hd-title{
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+.header{
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  position: relative;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.back{
+  width: 12rpx;
+  height:24rpx;
+  margin-right: 5rpx;
+}
+.hd-l{
+  width: 40px;
+  height:100%;
+  position: absolute;
+  left: 30rpx;
+  top:5rpx;
+  text-align: left;
+}
+.hd-r{
+  width: 50rpx;
+  height:50rpx;
+  position: absolute;
+  right: 30rpx;
+  top:25rpx;
+}
+.blue{
+  color: #5db4fe
+}
+.empty-text{
+  text-align: center;
+  color: #aaa;
+  font-size: 1rem;
+}
+/* bookItem */
+.pop-warp{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .3);
+  z-index: 9999
+}
+.bind-pop{
+  position: absolute;
+  top: 20%;
+  left: 16%;
+  width: 69.33%;
+  background-color: #fff;
+  padding: 30rpx;
+  box-sizing: border-box
+}
+.bind-gain{
+  position: absolute;
+  top: 20%;
+  left: 22%;
+  width: 56%;
+  background-color: #fff;
+  padding-top: 70rpx;
+  padding-bottom: 47rpx;
+  text-align: center;
+  box-sizing: border-box
+}
+.bind-gain  .bind-pop-close{
+  width: 60rpx;
+  height: 60rpx;
+  right: -20rpx;
+}
+.bind-gain .top{
+  font-weight: bold;
+  font-size: 36rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+.bind-gain .center{
+  color: #fe3441;
+  font-size: 28rpx;
+}
+.bind-gain .bottom{
+  margin-top: 8rpx;
+  font-size: 28rpx;
+  color: #9b9b9b;
+}
+ .num{
+  font-size: 44rpx;
+}
+.bind-gain-img{
+  width: 150rpx;
+  height: 150rpx;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 40rpx;
+}
+.bind-pop-banner{
+  width: 100%;
+  display: block;
+}
+.bind-pop-close{
+  position: absolute;
+  right: -30rpx;
+  top: -20rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAZlBMVEUAAAD19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXr6+unp6ebm5upqamqqqrE+NBvAAAAHHRSTlMA4QiE9BHsBPFPz61zOSXnm8bCopRNHBn6lVdRxybjcwAAATZJREFUSMedl0eWhDAMRGWCyaFzmIKm73/J2fQ0DEaA6+9Y/CeeEHJZlkiq8nQwKZCaw6msEtlF8CxS/CMtnsGmFocWC9gwXq8WRlCIwpWqF4MVzEUrd8YG58Witxyb5DfXqw12YGrHa7CLZmZeDXZirlMvyLGbfNqhBzx4jF4GL7LvmDXwovkbvxCehJ+CETyJ4rEgUTKx8MYmY0v9G1tgznvoMKEb3phTiARua4ZX3028/jW47QmkgkPXf8zxwaGSErqpeyilhW7qHlo5Qjd1D0cx0E3dg5EUuql7SAXQTd0DWPHOvqqlm0N/DnoA6JGjh5z+rdgfmV4d9LKi1yO/kPkjgD90/Bv7I19aeNDSRzkbHri4Yms2ILGRjA2BdOzkgy4frXWSzA3zWSIO+vUhwt3q14dfE2UKR0r+RekAAAAASUVORK5CYII=);
+  width: 40rpx;
+  height: 40rpx;
+  background-size: contain;
+  border: 0;
+  background-repeat: no-repeat
+}
+.bind-pop-close::after{
+  content: none;
+}
+.bind-pop-w{
+  display: block
+}
+.bind-pop-submit{
+  color: #fff;
+  background-color: #52b4ff;
+  height: 72rpx;
+  line-height: 72rpx; 
+}
+.phone-pop{
+  width: 500rpx;
+  margin: 20% auto;
+  height: 470rpx;
+  background-color: #fff;
+}
+.phone-close{
+  float: right;
+  width: 35rpx;
+  height: 35rpx;
+  margin: 20rpx 20rpx 0 0;
+}
+.phone-tit{
+  padding-top: 100rpx;
+  text-align: center;
+  color: #333
+}
+.phone-subtit{
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 20rpx
+}
+.phone-input{
+  width: 100rpx;
+  display: block;
+  margin: 0 auto;
+  margin-top: 100rpx;
+  border-bottom: 1px solid #ccc;
+}
+.phone-error{
+  color: #ccc;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 30rpx;
+}
+.phone-error text{
+  color: #5db4fb
+}
+.phone-send-again{
+  margin-top: 30rpx;
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+}
+.phone-send-again text{
+  color: #aaa
+}
+.moreInApp{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-top: 1px solid #eee;
+  background-color: #fff;
+  font-size: 13px
+}
+.moreInApp .text{
+  color: #52b4ff
+}
+page .btn-none{
+  padding: 0;
+  margin: 0;
+  border: 0;
+  color: inherit;
+  background: none;
+  display: block;
+  line-height: inherit;
+  position: static;
+}
+page .btn-none::after{
+  content: none
+}
+
+/*  底部提示绑定banner */
+.bind-banner{
+  width: 100%;
+}

@@ -1,0 +1,135 @@
+/* pages/search/search.wxss */
+page{
+  background: #f5f5f5;
+}
+.search-hd{
+  height: 80rpx;
+  background: #f1f1f1;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between
+      
+}
+.search-box{
+  width: 70%;
+  height: 64rpx;
+  padding: 10rpx;
+  background: #ffffff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center
+}
+
+.btn-search{
+  border: 0;
+  width: 24%;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 80rpx;
+  height: 80rpx;
+  background: #5db4fe;
+  color: #ffffff;
+}
+.search-box icon,
+.search-box input{
+  display: block;
+}
+.search-box icon{
+  margin-left: 10rpx
+}
+.search-box input{
+  font-size: 16px;
+  color: #333333;
+  margin-left: 20rpx;
+  flex: 1;
+}
+
+.search-box icon{
+  width: 20px;
+  height: 20px;
+}
+.page-section{
+  padding: 30rpx;
+}
+.section-title,
+.section-foot{
+  font-size: 1rem;
+  color: #333333;
+  font-weight: bold;
+  line-height: 2;
+  position: relative;
+}
+.refresh,
+.del{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 20rpx;
+  right: 0;
+  cursor: pointer;
+}
+.key-box{
+  padding: 30rpx 0;
+}
+.key-words{
+  display: inline-block;
+  background: #e1e1e1;
+  padding: 10rpx 20rpx;
+  border-radius: 40rpx;
+  margin-right: 30rpx;
+  margin-bottom: 30rpx;
+  font-size: 0.8rem;
+  color: #5db4fe;
+}
+
+/* LIST */
+.list{
+  background: #fff;
+  padding: 0 30rpx;
+}
+.item{
+  padding: 24rpx 0;
+  border-bottom:1rpx solid #e5e5e5;
+  line-height: 1.5;
+  font-size: 0.8rem;
+  position: relative;
+  padding-left: 190rpx;
+  height: 214rpx;
+}
+.item-img{
+  position: absolute;
+  top: 24rpx;
+  left: 0;
+  width: 160rpx;
+  height: 214rpx;
+}
+.item-name{
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333333;
+  margin: 10rpx 0;
+}
+.item-detail{
+  color: #9b9b9b; 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden; 
+}
+.label-box{
+  margin: 20rpx 0;  
+}
+.nickname{
+  color: #5db4fe;
+}
+.label{
+  padding: 0rpx 10rpx;
+  border: 1px solid #d0deea;
+  border-radius: 5rpx;
+  color: #a4b1bb;
+  margin-left: 15rpx;
+  float: right; 
+}

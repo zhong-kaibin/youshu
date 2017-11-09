@@ -1,0 +1,18 @@
+/* activity/mind/mind.wxss */
+.index-bg{
+  width: 100%;
+  display: block;
+  margin-top: -25rpx
+}
+.start-btn{
+  width: 85%;
+  height: 85rpx;
+  line-height: 85rpx;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+  background-image: url(https://ssl.kdyoushu.com/applet/mind_test/at_share_btn.png)
+}

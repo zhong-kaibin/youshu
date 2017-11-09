@@ -1,0 +1,14 @@
+<!--automaticBuy.wxml-->
+<!-- <import src="../../../common/personal/head.wxml" />
+<template is="head" data="{{title: '自动购买'}}"/> -->
+
+<view class="page-list">
+  <block wx:key="{{item.book_id}}" wx:for="{{resource}}">
+    <view class="item">
+      <view class="item-text">
+        <text class="item-l">{{item.book_name}}</text>
+        <switch data-book_id="{{item.book_id}}" color="#5db4fe" class="item-r" checked="{{item.auto_buy == 1? true : flase}}"  bindchange="switchChange"/>
+      </view>                
+    </view>
+  </block>
+</view>

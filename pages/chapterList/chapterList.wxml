@@ -1,0 +1,22 @@
+<!--pages/chapterList/chapterList.wxml-->
+<view class='reader-hd'>
+  <text>共{{total}}章</text>
+  <text bindtap='sortDesc' class='sort'>{{ !desc? '倒序' : '顺序'}}</text>
+</view>
+
+<view  class='page-section' >
+  <view class='list'>
+    <block wx:key='{{item.chapter_id}}' wx:for="{{list}}">
+      <view bindtap='goDetail' data-index='{{index}}' class='list-item'>
+      <text>[{{item.chapter_name}}]</text>
+      <image wx-if="{{item.pay_type == 0}}"  class='icon-free' src='/image/lock.png'></image>
+      </view>
+    </block>
+    <block wx:if='{{complete}}'>
+      <text  class='complete'>没有更多了哦</text>
+    </block>  
+  </view>
+</view>
+
+<!-- <view bindtap='toTop' class='backtop'><text>返回</text><text>顶部</text></view> -->
+

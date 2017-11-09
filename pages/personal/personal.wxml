@@ -1,0 +1,50 @@
+<!--personal.wxml-->
+<!-- <import src="../common/moreInApp.wxml"/> -->
+
+<view class="page-section">
+   <image class="userinfo-avatar" wx-if="{{userInfo.avatar}}" src="{{userInfo.avatar}}" background-size="cover"></image>
+   <text class="userinfo-nickname">{{userInfo.nickname}} </text>
+   <view class="user_id">ID: {{userInfo.id}}</view>
+   <text class="userinfo-money">余额：<text class='blue'>{{userInfo.balance}}</text> 阅读币</text>
+   <button wx:if="{{showRecharge}}" bindtap="rechargeTap" class="btn-recharge">充值 </button>
+</view>
+
+<view class="page-list">
+  <view bindtap="readedTap" class="list-item">
+    <text class="item">最近阅读</text>
+    <image class="icon-next" src="../../image/next.png"></image>
+  </view>
+  <view bindtap="bookshelfTap" class="list-item">
+    <text class="item">我的书架</text>
+    <image class="icon-next" src="../../image/next.png"></image>
+  </view> 
+</view>
+
+<view class="page-list">
+  <view bindtap="rechargeRecordTap" class="list-item">
+    <text class="item">充值记录</text>
+    <image class="icon-next" src="../../image/next.png"></image>
+  </view>
+  <view bindtap="buyRecordTap" class="list-item">
+    <text class="item">消费记录</text>
+    <image class="icon-next" src="../../image/next.png"></image>
+  </view> 
+  <view bindtap="automaticBuyTap" class="list-item">
+    <text class="item">自动购买</text>
+    <image class="icon-next" src="../../image/next.png"></image>
+  </view> 
+  <!-- <view bindtap="settingTap" class="list-item">
+    <text class="item">设置</text>
+    <image class="icon-next" src="../../image/next.png"></image>
+  </view> -->
+ <view bindtap="aboutUsTap" class="list-item">
+    <text class="item">关于我们</text>
+    <image class="icon-next" src="../../image/next.png"></image>
+  </view>
+  <view bindtap="clearStorge" class="list-item">
+    <text class="item">清除缓存</text>
+    <text class='item-right'>{{storgeSize}}</text>
+  </view> 
+</view>
+<!-- <template  is="moreInApp"/> -->
+

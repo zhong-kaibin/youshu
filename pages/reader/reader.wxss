@@ -1,0 +1,323 @@
+/* pages/reader/reader.wxss */
+
+page {
+  font-size: 12px;
+}
+
+.reader-hd {
+  background: #f3f2ee;
+  color: #9b9b9b;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.page-section {
+  padding: 80rpx 30rpx 0 30rpx;
+  min-height: 100vh;
+  box-sizing: border-box
+}
+
+.reader-hd text {
+  display: block;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 30rpx;
+}
+
+.dateil {
+  color: #333;
+  line-height: 1.5;
+}
+
+.dateil text {
+  display: block;
+}
+
+.btn-box {
+  margin: 30rpx 0 0 0;
+}
+
+.btn-next {
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #5db4fe;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.btn-box-list {
+  margin: 0 auto;
+  padding:  30rpx 0;
+  display: flex;
+  /* flex-wrap: wrap;
+  justify-content: space-between; */
+  width: 100%;
+}
+
+.btn-box-list  form{
+  float: left;
+  width: 27%;
+  margin: 0 3%;
+}
+.btn-box-list button { 
+  text-align: center;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #fff;
+  color: #5db4fe;
+  font-size: 0.8rem;
+}
+
+.btn-box-list .btn-catalog {
+  width: 25%;
+}
+
+.set-hd {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #fff;
+  position: fixed;
+  z-index: 9;
+  left: 0;
+  top: 0;
+}
+
+.bookmark {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 100rpx;
+  top: 20rpx;
+}
+
+.backdateil {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 20rpx;
+}
+
+.set-foot {
+  padding: 20rpx 0;
+  width: 100%;
+  height: 80rpx;
+  line-height: 100rpx;
+  background: #fff;
+  position: fixed;
+  z-index: 9;
+  left: 0;
+  bottom: 0;
+}
+
+.lset-foot-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.set-foot-list-item {
+  display: inline-block;
+  text-align: center;
+  width: 33.33%;
+}
+
+.set-foot-list-item image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 0 auto;
+  display: block;
+}
+
+.set-foot-list-item text {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #5db4fe;
+  display: block;
+  line-height: 2;
+}
+
+.set-foot-slideup {
+  padding: 20rpx 0;
+  width: 100%;
+  height: 460rpx;
+  line-height: 100rpx;
+  background: #fff;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  bottom: 0;
+}
+
+.section {
+  padding: 0 20rpx;
+  zoom: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.section-l image {
+  width: 40rpx;
+  height: 40rpx;
+  display: inline-block;
+}
+
+.section-l slider {
+  flex: 1;
+  margin: 0px 20rpx;
+}
+
+.section-l {
+  width: 70%;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-r {
+  width: 30%;
+  text-align: right;
+}
+
+.section-title {
+  font-size: 30rpx;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+  color: #333;
+  vertical-align: middle;
+}
+
+.section-text {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 50px;
+}
+
+.spancing-box, .bg-color-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.icon-spacing {
+  margin-top: 40rpx;
+  width: 80rpx;
+  height: 80rpx;
+  display: inline-block;
+}
+
+.icon-spacing.active {
+  box-shadow: 0 0 3rpx 2rpx #5db4fe;
+}
+
+.bg-color-box view {
+  margin-top: 30rpx;
+  width: 80rpx;
+  height: 60rpx;
+  border-radius: 10rpx;
+}
+
+.bg-color-box view.on {
+  border: 1rpx solid #ccc;
+  box-shadow: 0 0 1rpx 3rpx #ccc;
+}
+
+.bg1 {
+  background: #f5f5f5;
+}
+
+.bg2 {
+  background: #f7ecd5;
+}
+
+.bg3 {
+  background: #bef0d0;
+}
+
+.bg4 {
+  background: #191919;
+}
+
+/*  需要购买 */
+
+.buy {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background-color: #fff;
+}
+
+.radio-group {
+  display: inline-block;
+}
+
+.title {
+  margin-top: 200rpx;
+  font-size: 1.2rem;
+  color: #333;
+  line-height: 2.5;
+  font-weight: bold;
+  text-align: center;
+}
+
+.text {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.5;
+  padding-left: 30%;
+}
+
+.fc-blur {
+  color: #5db4fe;
+}
+
+.foot {
+  width: 100%;
+  text-align: center;
+  margin-top: 45%;
+}
+
+.tip {
+  line-height: 1.5;
+  font-size: 0.8rem;
+  color: #9b9b9b;
+}
+
+.btn-buy {
+  width: 80%;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background: #5db4fe;
+  color: #fff;
+  font-weight: bold;
+  margin: 30rpx auto;
+  font-size: 1rem;
+}
+.bind-banner{
+  padding:0 30rpx;
+  box-sizing: border-box
+}

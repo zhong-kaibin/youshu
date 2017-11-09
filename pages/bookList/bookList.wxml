@@ -1,0 +1,22 @@
+<!--free.wxml-->
+<view class="page-list">
+  <block wx:for="{{list}}" wx:key="item.book_id">
+    <navigator url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
+      <view class="item">
+        <image class="item-img" src="{{item.cover}}"></image>
+        <view class="item-text">
+          <text class="item-name">{{item.book_name}}</text>
+          <text class="item-detail">{{item.intro}}</text>
+          <view class="label-box">
+            <text class="nickname">{{item.author_name}}</text>
+            <text class="label">{{item.status ==1? '已完结' : '连载中'}}</text>
+            <text class="label">{{item.cate_name}}</text>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+  <block wx:if='{{complete}}'>
+    <text class='complete'>没有更多了哦</text>
+  </block>
+</view>

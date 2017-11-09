@@ -1,0 +1,33 @@
+/* pages/personal/page/about/about.wxss */
+.about{
+  text-align: center
+}
+.logo{
+  width: 220rpx;
+  height: 220rpx;
+  display: block;
+  margin: 100rpx auto 50rpx;
+  border: 1px solid #f5f5f5;
+  border-radius: 5rpx;
+}
+.title{
+  font-size: 60rpx;
+  margin-bottom: 22rpx;
+  color: #000
+}
+.bottom{
+  position: fixed;
+  bottom: 30rpx;
+  left: 0;
+  right: 0;
+  font-size: 30rpx
+  
+}
+.sub-des{
+  color: #666;
+  font-size: 35rpx
+}
+.bt-about{
+  color: #999;
+  line-height: 1.6;
+}

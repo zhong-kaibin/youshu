@@ -1,0 +1,141 @@
+<!--pages/reader/reader.wxml-->
+<import src="../common/pop.wxml" />
+
+<template is="pop" data="{{...bindPop}}" />
+<view style='background:{{backColor}};min-height:100%'>
+  <view style='background:{{backColor}}' wx-if="{{pay_type === 1}}" class='reader-hd'>
+    <text style='font-size: {{fontSize * 0.85}}rpx;'>{{chapter_name}}</text>
+  </view>
+  <view bindtap='tapShowSetting' wx-if="{{pay_type === 1}}" class='page-section'>
+    <!-- <view class='chapter-title'>
+    <text>{{title}}</text>
+  </view> -->
+    <view style="{{backColor =='#191919'? 'color:#666' : ''}}" class='dateil'>
+      <text wx:key='{{index}}' wx:for="{{content}}" style="font-size: {{fontSize}}rpx; text-indent: {{fontSize *1.8 }}rpx;   line-height: {{lineHeight}} ">{{item}}</text>
+    </view>
+    <view class='btn-box'>
+      <form bindsubmit="bindpopsubmit" report-submit='true'>
+        <button formType='submit' catchtap='getNextChapter' id='nextChapterBtn' class='btn-next'>下一章</button>
+      </form>
+      <view class='btn-box-list'>
+        <form bindsubmit="bindpopsubmit" report-submit='true'>
+          <button formType='submit' id='lastChapterBtn' catchtap='getLastChapter'>上一章</button>
+        </form>
+        <form bindsubmit="bindpopsubmit" class='btn-pre' report-submit='true'>
+          <button formType='submit' id='chapterListBtn' catchtap='goChapterList'>目录</button>
+        </form>
+        <form bindsubmit="bindpopsubmit" class='btn-pre' report-submit='true'>
+          <button formType='submit' id='bookDetailBtn' catchtap="goDetail">书籍详情</button>
+        </form>
+      </view>
+    </view>
+      <image wx:if="{{bindBannerShow}}" bindtap='forceBindPop' class='bind-banner' mode='widthFix' src='/image/reader/bind-banner.jpg'></image>
+  </view>
+
+  <view wx-if="{{pay_type === 0}}" class="buy">
+    <view class='title'>
+      <text>{{chapter_name}}</text>
+    </view>
+    <view class='text'>
+      <text>本章价格：<text class='fc-blur'>{{cost_money}} </text> 阅币</text>
+    </view>
+    <view class='text'>
+      <text>账户余额：<text class='fc-blur'>{{balance}} </text> 阅币</text>
+    </view>
+    <view class='foot'>
+      <view class='tip'>
+        <radio bindtap='buyChange' checked='{{auto_buy}}' color='#5db4fe'></radio>
+        <text class='tip'>下一章自动购买 （可在个人中心取消）</text>
+      </view>
+
+      <button bindtap='buyChapter' class='btn-buy'>{{buyBtnName}}</button>
+      <button wx-if="{{fromFree}}" size="mini" bindtap='getLastChapter'> 返回上一章</button>
+    </view>
+  </view>
+
+  <!--设置-->
+  <!-- <view class='set-hd'>
+  <image class='bookmark' src='../../image/reader/bookmark0.png'></image>
+  <image class='backdateil' src='../../image/reader/icon.png'></image>
+</view>   -->
+
+  <view wx:if='{{foot}}' class='set-foot'>
+    <view class='set-foot-list'>
+      <view bindtap='goChapterList' class="set-foot-list-item">
+        <image src='../../image/reader/catalog.png'></image>
+        <text>目录</text>
+      </view>
+      <view bindtap='tapShowSubSetting' class="set-foot-list-item">
+        <image src='../../image/reader/Aa.png'></image>
+        <text>设置</text>
+      </view>
+      <view wx-if="{{backColor != '#191919'}}" bindtap='backColorChange' data-color='#191919' class="set-foot-list-item">
+        <image src='../../image/reader/night.png'></image>
+        <text>夜间</text>
+      </view>
+      <view wx-if="{{backColor == '#191919'}}" bindtap='backColorChange' data-color='#f5f5f5' class="set-foot-list-item">
+        <image src='../../image/reader/night.png'></image>
+        <text>日间</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{setting}}" class='set-foot-slideup'>
+    <!--亮度  -->
+    <view class="section">
+      <view class="section-l">
+        <image class='icon-l' src='../../image/reader/lightdown.png'></image>
+        <slider value="{{ligthLevel}}" selected-color='#5db4fe' bindchange="ligthChange" min="1" max="100" show-value/>
+        <image class='icon-r' src='../../image/reader/lighton.png'></image>
+      </view>
+      <view class='section-r'>
+        <text class="section-title">默认</text>
+        <switch checked="{{ligthLevel == 50 ? true : false }}" color='#5db4fe' bindchange="ligthDefaultChange" />
+      </view>
+    </view>
+    <!-- 字体  -->
+    <view class="section">
+      <view class="section-l">
+        <image class='icon-l' src='../../image/reader/A-.png'></image>
+        <slider value="{{fontSize}}" selected-color='#5db4fe' bindchange="fontSizeChange" min="30" max="60" show-value/>
+        <image class='icon-r' src='../../image/reader/A+.png'></image>
+      </view>
+      <view class='section-r'>
+        <text class="section-title">默认</text>
+        <switch checked="{{fontSize == 38 ? true : false }}" color='#5db4fe' bindchange="fontSizeDefaultChange" />
+      </view>
+    </view>
+    <!-- <view class="section">
+    <view class="section-l">
+      <text class='section-text'>自动购买下一章</text>
+    </view>
+    <view class='section-r'>
+      <switch checked color='#5db4fe' bindchange="switch3Change" />
+    </view>
+  </view> -->
+    <!-- 间距  -->
+    <view class="section">
+      <view class="section-l spancing-box">
+        <image data-line='1.8' bindtap='changeLineHeight' class='icon-spacing {{lineHeight == 1.8? "active" : ""}}' src='../../image/reader/spacing1.png'></image>
+        <image data-line='1.5' bindtap='changeLineHeight' class='icon-spacing {{lineHeight == 1.5? "active" : ""}}' src='../../image/reader/spacing2.png'></image>
+        <image data-line='1.2' bindtap='changeLineHeight' class='icon-spacing {{lineHeight == 1.2? "active" : ""}}' src='../../image/reader/spacing3.png'></image>
+      </view>
+      <view class='section-r'>
+        <text class="section-title">正文行间距</text>
+      </view>
+    </view>
+    <!--背景色  -->
+    <view class="section">
+      <view class="section-l bg-color-box">
+        <view bindtap='backColorChange' data-color='#f5f5f5' class='{{backColor == "#f5f5f5" ? "on" : ""}} bg1'></view>
+        <view bindtap='backColorChange' data-color='#f7ecd5' class='{{backColor == "#f7ecd5" ? "on" : ""}} bg2'></view>
+        <view bindtap='backColorChange' data-color='#bef0d0' class='{{backColor == "#bef0d0" ? "on" : ""}} bg3'></view>
+        <view bindtap='backColorChange' data-color='#191919' class='{{backColor == "#191919" ? "on" : ""}} bg4'></view>
+      </view>
+      <view class='section-r'>
+        <text class="section-title">阅读背景</text>
+      </view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,35 @@
+<template name="pop">
+  <view wx:if="{{show}}" class='pop-warp'>
+    <view wx:if="{{!phoneShow}}" class='bind-pop'>
+      <form style='display:block' formType="submit" report-submit="true" bindsubmit='bindpopsubmit'>
+        <button formType="submit" id="bindPhoneBtn"  class='btn-none' bindtap='tapBindPhone' open-type="getPhoneNumber" bindgetphonenumber="bindPhone">
+          <image mode='widthFix' src='../../image/pop/bind_banner.png' class='bind-pop-banner'></image>
+          <button class='bind-pop-submit'>马上绑定</button>
+        </button>
+
+        <button bindtap='closeBindPop' class='bind-pop-close'></button>
+      </form>
+    </view>
+
+    <view wx:if="{{phoneShow}}" class='phone-pop'>
+      <image bindtap='tapClosePhonePop' mode='aspectFit' src='../../image/pop/code_close.png' class='phone-close'></image>
+      <view class='phone-tit'>请填写手机短信验证码</view>
+      <view class='phone-subtit'>已发送至手机 123****123</view>
+      <input bindinput="inputSendPhone" class='phone-input' type="number" maxlength='4' focus></input>
+      <view wx:if="{{counttime <= 0 }}" class='phone-error'>验证码错误,
+        <text bindtap='tapSendPhone'>重新发送</text>
+      </view>
+      <view class='phone-send-again' wx:if='{{counttime > 0}}'>
+        <text>{{counttime}}</text>s后可以重新发送</view>
+    </view>
+  </view>
+  <view wx:if="{{showSuccess}}" class='pop-warp'>
+    <view class='bind-gain'>
+    <button bindtap='closeBindPop' class='bind-pop-close'></button>    
+      <image class='bind-gain-img' mode='scaleToFill' src='/image/activity/gold.png'></image>
+      <view class='top'>恭喜绑定成功</view>
+      <view class='center'><text class='num'>288</text>阅币</view>
+      <view class='bottom'>已发放至您的账号</view>
+    </view>
+  </view>
+</template>

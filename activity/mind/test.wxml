@@ -1,0 +1,12 @@
+
+<view  class='main-bg bg'>
+  <view class='img-frame answer-frame'>
+      {{index + 1}}/10
+  </view>
+  <view class='title'>{{answer[index].tit}}</view>
+  <view data-index="{{index}}" bindtap='select' wx:key="{{index}}" wx:for="{{answer[index].results}}" class='anwser-box'>
+      <image class='anwser-img' src="../../image/activity/{{check == index? '':'no-'}}check.png"></image>
+      <text class='anwser-text'>{{item}}</text>
+  </view>
+</view>
+

@@ -1,0 +1,40 @@
+/* pages/buy/buy.wxss */
+.title{
+  margin-top: 200rpx;
+  font-size: 1.2rem;
+  color: #333333;
+  line-height: 2.5;
+  font-weight: bold;
+  text-align: center;
+}
+.text{
+  font-size: 0.9rem;
+  color: #333333;
+  line-height: 1.5;
+  text-align: center;  
+}
+.fc-blur{
+  color: #5db4fe;
+}
+.foot{
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 100rpx;
+}
+.tip{
+  font-size: 0.8rem;
+  color: #9b9b9b;
+}
+.btn-buy{
+  width:80%;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background: #5db4fe;
+  color: #ffffff;
+  font-weight: bold;
+  margin: 30rpx auto;
+  font-size: 1rem;
+}

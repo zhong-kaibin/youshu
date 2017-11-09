@@ -1,0 +1,171 @@
+/* pages/reader/reader.wxss */
+
+page {
+  font-size: 12px;
+}
+
+.reader-hd {
+  background-color: rgba(0, 0, 0, .2);
+  color: #9b9b9b;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.img-btn{
+  -webkit-appearance: none;
+  display: block;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border:0
+}
+.img-btn:after{
+  content: none
+}
+.page-section {
+  min-height: 100vh;
+}
+
+ .comic-image{
+  width: 100%;
+  display: block;
+  height: 100vh;
+}
+.reader-hd text {
+  display: block;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 30rpx;
+  color: #fff;
+}
+
+.dateil {
+  color: #333;
+  line-height: 1.5;
+}
+
+.dateil text {
+  display: block;
+}
+
+.set-hd {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #fff;
+  position: fixed;
+  z-index: 9;
+  left: 0;
+  top: 0;
+}
+
+.bookmark {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 100rpx;
+  top: 20rpx;
+}
+
+.backdateil {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 20rpx;
+}
+
+.set-foot {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: rgba(0, 0, 0, .25);
+  position: fixed;
+  z-index: 9;
+  left: 0;
+  bottom: 0;
+}
+
+.set-foot-list-item {
+  display: inline-block;
+  text-align: center;
+  width: 33.33%;
+  color: #fff
+}
+
+.set-foot-list-item image {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle
+}
+
+.set-foot-slideup {
+  padding: 20rpx 0;
+  width: 100%;
+  height: 580rpx;
+  line-height: 100rpx;
+  background: #fff;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  bottom: 0;
+}
+
+/*  需要购买 */
+.buy {
+  height: 100vh;
+  padding-top: 200rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-bottom: 1px solid #eee
+}
+
+.radio-group {
+  display: inline-block;
+}
+
+.title {
+  font-size: 1.2rem;
+  color: #333;
+  line-height: 2.5;
+  font-weight: bold;
+  text-align: center;
+}
+
+.text {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.5;
+  padding-left: 30%;
+}
+
+.fc-blur {
+  color: #5db4fe;
+}
+
+.foot {
+  width: 100%;
+  text-align: center;
+  margin-top: 45%;
+}
+
+.tip {
+  line-height: 1.5;
+  font-size: 0.8rem;
+  color: #9b9b9b;
+}
+
+.btn-buy {
+  width: 80%;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background: #5db4fe;
+  color: #fff;
+  font-weight: bold;
+  margin: 30rpx auto;
+  font-size: 1rem;
+}

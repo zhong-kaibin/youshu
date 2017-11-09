@@ -1,0 +1,7 @@
+<!--pages/personal/page/setting/setting.wxml-->
+<view class="page-list">
+  <view bindtap="clearStorge" class="list-item">
+    <text class="item">清除缓存</text>
+    <text class='item-right'>{{storgeSize}}</text>
+  </view> 
+</view>

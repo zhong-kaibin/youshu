@@ -1,0 +1,15 @@
+/* automaticBuy.wxss */
+.page-list{
+  padding: 0 30rpx;
+}
+.item{
+  padding-top: 30rpx;
+  padding-right: 20rpx;
+  padding-bottom: 30rpx;
+  border-bottom:1rpx solid #f5f5f5;
+  line-height: 2;
+  font-size: 0.9rem;
+}
+.item-r{
+  float: right;
+}

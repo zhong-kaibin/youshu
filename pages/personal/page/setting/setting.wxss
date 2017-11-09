@@ -1,0 +1,28 @@
+/* pages/personal/page/setting/setting.wxss */
+
+.page-list{
+  padding-left: 30rpx;
+  position: relative;
+  background: #ffffff;
+  margin-bottom: 10rpx;
+}
+.list-item{
+  height: 100rpx;
+  line-height: 100rpx;
+  position: relative;
+  font-size: 0.9rem;
+  color: #333333;
+}
+.icon-next{
+  width: 30rpx;
+  height:30rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 38rpx;
+}
+.item-right{
+  float: right;
+  font-size: .8rem;
+  color: #aaa;
+  margin-right: 30rpx
+}

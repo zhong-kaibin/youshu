@@ -1,0 +1,33 @@
+<!--bookshelf.wxml-->
+<view class="page-list">
+<view wx:if="{{empty}}" class='empty-text' catchtap='naviToRecormend'>暂时没有记录，快去看看吧~</view>
+  <checkbox-group bindchange="check">
+    <block wx:for="{{list}}" wx:key="{{item.book_id}}">
+      <navigator hover-class="none" url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
+        <view class="item">
+          <checkbox checked='{{item.checked}}' value='{{item.book_id}}' class="{{manage?'btn-checked-show':'btn-checked-hide'}}" />
+          <image class="item-img" src="{{item.cover}}"></image>
+          <view class="item-text">
+            <text class="item-name">{{item.book_name}}</text>
+            <text class="item-detail">已阅第{{item.index}}章 {{item.chapter}}</text>
+            <view class="label-box">
+              <button catchtap="{{item.is_myself ? 'goto' : 'addToShelf'}}"
+               data-chapter_num=' {{item.chapter_num}}' 
+               data-book_id='{{item.book_id}}' data-index='{{index}}'
+                class="btn-catalog btn"> 
+                {{item.is_myself ? "已在书架" : "加入书架" }}</button>
+              <button catchtap='goReading' data-is_comic='{{item.is_comic}}' data-book_name='{{item.book_name}}' data-book_id='{{item.book_id}}' class="btn-read btn">
+                继续阅读
+              </button>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </block>
+  </checkbox-group>
+</view>
+
+<view class="foot" wx:if="{{manage}}">
+  <text bindtap='checkAll ' class="select-all">{{checkName}}</text>
+  <text bindtap='deleteSelect ' class="del">删除</text>
+</view>

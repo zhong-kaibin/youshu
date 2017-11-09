@@ -1,0 +1,63 @@
+<!--pages/rank.wxml-->
+<!-- <import src="../common/head.wxml" />
+<template is="head" data="{{title: '男生排行榜'}}"/> -->
+
+<view class="page-list">
+  <view class="list">
+    <image class="list-img" src="../../image/rank/boy02.png"></image><!--人气-->
+    <image class="next-img" src="../../image/next.png"></image>
+    <view class="list-item">
+      <view class="item">
+        <text class='pot1'>1</text>
+        <text class='item-title'>猛男诞生记</text>
+      </view>
+      <view class="item">
+        <text class='pot'>2</text>
+        <text class='item-title'>超级兵王在花都</text>
+      </view>
+      <view class="item">
+        <text class='pot'>3</text>
+        <text class='item-title'>谁是王者，她的荣耀没有 谁是王者，她的荣耀没有</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="list">
+    <image class="list-img" src="../../image/rank/boy03.png"></image><!--新书-->
+    <image class="next-img" src="../../image/next.png"></image>
+    <view class="list-item">
+      <view class="item">
+        <text class='pot1'>1</text>
+        <text class='item-title'>猛男诞生记</text>
+      </view>
+      <view class="item">
+        <text class='pot'>2</text>
+        <text class='item-title'>超级兵王在花都</text>
+      </view>
+      <view class="item">
+        <text class='pot'>3</text>
+        <text class='item-title'>谁是王者，她的荣耀没有 谁是王者，她的荣耀没有</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="list">
+    <image class="list-img" src="../../image/rank/boy01.png"></image><!--畅销-->
+    <image class="next-img" src="../../image/next.png"></image>
+    <view class="list-item">
+      <view class="item">
+        <text class='pot1'>1</text>
+        <text class='item-title'>猛男诞生记</text>
+      </view>
+      <view class="item">
+        <text class='pot'>2</text>
+        <text class='item-title'>超级兵王在花都</text>
+      </view>
+      <view class="item">
+        <text class='pot'>3</text>
+        <text class='item-title'>谁是王者，她的荣耀没有 谁是王者，她的荣耀没有</text>
+      </view>
+    </view>
+  </view>
+</view>
+

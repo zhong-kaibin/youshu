@@ -1,0 +1,20 @@
+<!--buyRecord.wxml-->
+<!-- <import src="../../../common/personal/head.wxml" />
+<template is="head" data="{{title: '消费记录'}}"/> -->
+
+<view class="page-list">
+  <view wx-if="{{empty}}" class='empty'>暂无记录</view>  
+  <block wx:for="{{list}}">
+    <view class="item">
+      <view class="item-text">
+        <text class="item-l">{{item.title}}</text>
+        <text class="item-r">{{item.money}}阅币</text>
+      </view>
+      <view class="item-text1">
+        <text class="item-l"> {{item.content}} {{item.title}}</text>
+        <text class="item-r">{{item.created}}</text>
+      </view>          
+    </view>
+  </block>
+  <view wx-if="{{!empty && complete}}" class='empty'>无更多记录了哦</view> 
+</view>

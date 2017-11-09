@@ -1,0 +1,46 @@
+/* activity/mind/test.wxss */
+.main-bg{
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  padding-top: 80rpx;
+  box-sizing: border-box;
+  background-image: url(https://ssl.kdyoushu.com/applet/mind_test/at_an_bg.png)
+}
+
+.answer-frame{
+  width: 250rpx;
+  line-height: 180rpx;
+  color: #92785c;
+  background-size: contain;
+  background-origin: center;
+  text-align: center;
+  margin: 0 auto ;
+  background-repeat: no-repeat;
+  font-size: 40rpx;
+  background-image: url(https://ssl.kdyoushu.com/applet/mind_test/at_frame.png)
+}
+.title{
+  padding:40rpx 15% 20rpx;
+  color: #422e19;
+  font-size: 38rpx;
+  line-height: 1.4;
+  font-weight: bold
+}
+.anwser-box{
+  padding:20rpx 15%;
+  font-size: 34rpx;
+  color: #422e19;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center
+
+}
+.anwser-img{
+  width: 34rpx;
+  height: 34rpx;
+}
+.anwser-text{
+  padding-left: 30rpx;
+  flex: 1  
+}

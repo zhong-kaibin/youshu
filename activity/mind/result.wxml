@@ -1,0 +1,96 @@
+<!--activity/mind/result.wxml-->
+<view class='main'>
+  <image mode='widthFix' class='banner' src='https://ssl.kdyoushu.com/applet/mind_test/at_test_banner.png'></image>
+  <view class='title'>
+    <text>{{result.tit}}</text>： <text class='name'>{{result.name}}</text>
+  </view>
+  <view class='img-w'>
+    <image mode='widthFix' class='img' src='{{result.pic}}'></image>
+  </view>
+  <view class='analyze'>
+    <view class='analyze-text'>详细分析</view>
+    <view class='desc'>
+      {{result.desc}}
+    </view>
+  </view>
+
+  <view class='share-w'>
+    <button  open-type="share" class='view1 btn'>分享好友</button>
+    <view bindtap='createCard' class='view1'>生成卡片</view>
+  </view>  
+
+  <view wx:if="{{sex == 1}}" class='bottom'>
+     <view class='row'>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5491193" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix'  src='http://ov2eyt2uw.bkt.clouddn.com/book_cover_5491193'></image>
+            <view class='text'>星际矿工</view>
+        </navigator>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5387735" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix' src='http://ov2eyt2uw.bkt.clouddn.com/book_cover_5387735'></image>
+            <view class='text'>都市盗圣</view>
+        </navigator>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5387776" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix' src='http://ov2eyt2uw.bkt.clouddn.com/book_cover_5387776'></image>
+            <view class='text'>男司机</view>
+        </navigator>
+     </view> 
+     <view class='row'>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5483563" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix'  src='http://ov2eyt2uw.bkt.clouddn.com/book_cover_5483563'></image>
+            <view class='text'>列王春秋</view>
+        </navigator>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5491146" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix' src='http://ov2eyt2uw.bkt.clouddn.com/book_cover_5491146'></image>
+            <view class='text'>仙途霸业</view>
+        </navigator>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5491203" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix' src='http://ov2eyt2uw.bkt.clouddn.com/book_cover_5491203'></image>
+            <view class='text'>深夜老公缠上我</view>
+        </navigator>
+     </view> 
+  </view>
+
+  <view wx:if="{{sex == 2}}" class='bottom'>
+     <view class='row'>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5492067" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix'  src='https://ssl.kdyoushu.com/comic_img_2017102720335998978.jpg'></image>
+            <view class='text'>冷血总裁的心尖妻</view>
+        </navigator>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5492068" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix' src='https://ssl.kdyoushu.com/comic_img_2017102720020787411.jpg'></image>
+            <view class='text'>国民老公好闷骚</view>
+        </navigator>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5483615" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix' src='http://ov2eyt2uw.bkt.clouddn.com/book_cover_5483615'></image>
+            <view class='text'>逼婚成宠：三叔请克制！</view>
+        </navigator>
+     </view> 
+     <view class='row'>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5483580" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix'  src='http://ov2eyt2uw.bkt.clouddn.com/book_cover_5483580'></image>
+            <view class='text'>祸国毒妃不好惹</view>
+        </navigator>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5491168" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix' src='http://ov2eyt2uw.bkt.clouddn.com/book_cover_5491168'></image>
+            <view class='text'>夫君莫跑，娘子在这儿呢</view>
+        </navigator>
+        <navigator url="/pages/bookDetail/bookDetail?book_id=5483575" 
+          hover-class="none" open-type="navigate">
+            <image mode='widthFix' src='http://ov2eyt2uw.bkt.clouddn.com/book_cover_5483575'></image>
+            <view class='text'>腹黑总裁恋上纨绔女</view>
+        </navigator>
+     </view> 
+  </view>
+
+</view>

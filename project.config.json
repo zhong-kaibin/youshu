@@ -1,0 +1,95 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.6.4",
+	"appid": "wx28c8a74bd01f5e3a",
+	"projectname": "q",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 3,
+			"list": [
+				{
+					"id": 0,
+					"name": "详情",
+					"pathName": "pages/bookDetail/bookDetail",
+					"query": "book_id=185061&collection=reader_from_template"
+				},
+				{
+					"id": 1,
+					"name": "书架",
+					"pathName": "pages/bookshelf/bookshelf",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "充值记录",
+					"pathName": "pages/personal/page/rechargeRecord/rechargeRecord",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "阅读器",
+					"pathName": "pages/reader/reader",
+					"query": "book_id=185061&chapter_id=14480"
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/search/search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/personal/personal",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "章节列表",
+					"pathName": "pages/chapterList/chapterList",
+					"query": "book_id=185061&book_name=10086"
+				},
+				{
+					"id": 7,
+					"name": "充值",
+					"pathName": "pages/recharge/recharge",
+					"query": "backurl=/pages/reader/reader?121ttt&index=1"
+				},
+				{
+					"id": 8,
+					"name": "漫画阅读器",
+					"pathName": "pages/readerComic/reader",
+					"query": "book_id=5397702&index=6"
+				},
+				{
+					"id": 9,
+					"name": "心理活动",
+					"pathName": "activity/mind/mind",
+					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "测试",
+					"pathName": "pages/test/test",
+					"query": ""
+				}
+			]
+		}
+	}
+}

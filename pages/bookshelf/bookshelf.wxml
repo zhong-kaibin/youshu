@@ -1,0 +1,36 @@
+<!--bookshelf.wxml-->
+<!-- <import src="../common/head.wxml" /> -->
+<!-- <template is="head" data="{{title: '书架'}}"/> -->
+
+<view wx-if="{{list.length !== 0}}" bindtap="bookEdit" class="edit">{{manage ? '完成' : '管理' }}</view>
+
+<view class="page-list">
+  <view wx-if="{{list.length == 0}}" class='addbook'>暂未添加书籍，快去看看吧~</view>
+  <checkbox-group bindchange="check">
+    <block wx:for="{{list}}" wx:key="{{item.book_id}}">
+      <navigator hover-class="none" url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
+        <view class="item">
+          <view catchtap='todo' class='btn-warp' class="{{manage?'btn-checked-show':'btn-checked-hide'}}">
+            <checkbox class='btn-checked' checked='{{item.checked}}' value='{{item.book_id}}' />
+          </view>
+          <image class="item-img" src="{{item.cover}}"></image>
+          <view class="item-text">
+            <text class="item-name">{{item.book_name}}</text>
+            <text class="item-detail">共{{item.chapter_num}}章 {{item.chapter}}</text>
+            <view class="label-box">
+              <form bindsubmit="bindpopsubmit" report-submit='true'>
+                <button id="shelfChapterListBtn" formType='submit' data-is_comic='{{item.is_comic}}' catchtap='goChapter' data-book_name='{{item.book_name}}' data-chapter_num=' {{item.chapter_num}}' data-book_id='{{item.book_id}}' class="btn-catalog btn">查看目录</button>
+                <button id="shelfReaderBtn" formType='submit' data-is_comic='{{item.is_comic}}' catchtap='goReading' data-book_name='{{item.book_name}}' data-book_id='{{item.book_id}}' class="btn-read btn">继续阅读</button>
+              </form>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </block>
+  </checkbox-group>
+</view>
+
+<view class="foot" wx:if="{{manage && list.length !== 0}}">
+  <text bindtap='checkAll' class="select-all">{{checkName}}</text>
+  <text bindtap='deleteSelect' class="del">删除</text>
+</view>

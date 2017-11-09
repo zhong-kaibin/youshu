@@ -1,0 +1,9 @@
+<!--pages/personal/page/about/about.wxml-->
+<view class='about'>
+<image class='logo'  src='../../../../image/big-logo.png'></image>
+<view class='title'>口袋有书</view>
+<view class='sub-des'>verison: {{version}}</view>
+<view class='bottom'>
+<view class='bt-about'>广州小虾网络科技有限公司 @版权所有</view>
+</view>
+</view>

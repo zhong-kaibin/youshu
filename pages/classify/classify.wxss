@@ -1,0 +1,92 @@
+/* classify.wxss */
+.page-list{
+  margin: 30rpx 0;
+  padding:0 30rpx;
+}
+.list-hd{
+  height: 100rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+  line-height: 100rpx;
+  font-size: 0.9rem;
+  font-weight: bold; 
+  color: #333333;
+  margin-bottom: 60rpx;
+}
+.item-title::before{
+  position: relative;
+  top: 8rpx
+}
+.item-title.red::before{
+  height: 40rpx;
+  width: 12rpx;
+  margin-right: 15rpx;
+  border-radius: 10rpx;
+  display: inline-block;
+  background: #ff746d;
+  content: '';
+}
+.item-title.blue::before{
+  height: 40rpx;
+  width: 12rpx;
+  margin-right: 15rpx;
+  border-radius: 10rpx;
+  display: inline-block;
+  background: #5fb2fd;
+  content: '';
+}
+.item-title.orange::before{
+  height: 40rpx;
+  width: 12rpx;
+  margin-right: 15rpx;
+  border-radius: 10rpx;
+  display: inline-block;
+  background: #fba002;
+  content: '';
+}
+.list-item.blue{
+  background-color:rgba(95,178,253, .03) 
+}
+.list-item.orange{
+  background-color:rgba(251,160,2, .03) 
+}
+.list-item.red{
+  background-color:rgba(255,116,109, .03) 
+}
+.list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.list-item{
+  line-height: 1;
+  position: relative;
+  height: 160rpx;
+  width: 48.9%;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+.item-img{
+  position: absolute;
+  top: 24rpx;
+  right: 30rpx;
+  width: 80rpx;
+  height: 100rpx;
+  border: 1rpx solid #f5f5f5;
+}
+.item-name{
+  display: block;
+  font-size: 1rem;
+  color: #555;
+  margin: 15rpx 0;
+}
+.item-detail{
+  color: #9b9b9b; 
+  font-size: 0.8rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden; 
+}

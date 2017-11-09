@@ -1,0 +1,3 @@
+<template name="moreInApp">
+  <view class='moreInApp'>更多小说尽在<text class='text'>口袋有书</text>APP客户端</view>
+</template>

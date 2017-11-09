@@ -1,0 +1,42 @@
+<!--pages/search/search.wxml-->
+<view class='search-hd'>
+  <view class='search-box'>
+    <icon size='17' type='search' color='#9d9d9d'></icon>
+    <input bindinput='changeBook' type='text' value='{{search_book}}' placeholder="输入书名" focus="true"></input>    
+  </view>
+  <button bindtap='searchBook' class='btn-search'>搜索</button>
+</view>
+<view wx:if="{{result.length !== 0}}" class='list'>
+  <block wx:for="{{result}}" wx:key="item.book_id">
+    <navigator url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
+      <view class="item">
+        <image class="item-img" src="{{item.cover}}"></image>
+        <view class="item-text">
+          <text class="item-name">{{item.book_name}}</text>
+          <text class="item-detail">{{item.intro}}</text>
+          <view class="label-box">
+            <text class="nickname">{{item.author_name}}</text>
+            <text class="label">{{item.status ==1? '已完结' : '连载中'}}</text>
+            <text class="label">{{item.cate_name}}</text>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+</view>  
+<view wx:if="{{result.length === 0}}" class='page-section'>
+  <!-- <view class='section-title'>
+    <text>大家都在搜</text>
+    <image class='refresh' src='../../image/refresh.png'></image>
+  </view> -->
+  <view class='section-foot'>
+    <text>搜索历史</text>
+    <image bindtap='deleteAllKey' class='del' src='../../image/del.png'></image>
+  </view>
+  <view class='key-box'>
+    <block wx:key="{{index}}"  wx:for="{{keyWords}}">
+     <text data-key="{{item}}" bindtap='searchHistory' class='key-words'>{{item}}</text>
+    </block>
+  </view>
+</view>
+

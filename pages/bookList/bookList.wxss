@@ -1,0 +1,56 @@
+/* free.wxss */
+.page-list{
+  padding: 30rpx;
+  padding-top: 0
+}
+.item{
+  padding: 24rpx 0;
+  border-bottom:1rpx solid #e5e5e5;
+  line-height: 1.5;
+  font-size: 0.8rem;
+  position: relative;
+  padding-left: 190rpx;
+  height: 214rpx;
+}
+.item-img{
+  position: absolute;
+  top: 24rpx;
+  left: 0;
+  width: 160rpx;
+  height: 214rpx;
+}
+.item-name{
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333333;
+  margin: 10rpx 0;
+}
+.item-detail{
+  color: #9b9b9b; 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden; 
+}
+.label-box{
+  margin: 20rpx 0;  
+}
+.nickname{
+  color: #5db4fe;
+}
+.label{
+  padding: 0rpx 10rpx;
+  border: 1px solid #d0deea;
+  border-radius: 5rpx;
+  color: #a4b1bb;
+  margin-left: 15rpx;
+  float: right; 
+}
+.complete{
+  color: #666;
+  font-size: 14px;
+  display: block;
+  line-height: 60rpx;
+  text-align: center
+}

@@ -1,0 +1,28 @@
+<!--pages/recharge/recharge.wxml-->
+
+<view class="page-section">
+  <view class="list">
+    <block wx:key="{{index}}" wx:for="{{payList}}">
+      <view bindtap='moneyTap' data-money="{{item.money}}" 
+      data-index="{{index}}" class="list-item {{item.isClick? 'active' : ''}}">
+        <text class="item-text">{{item.money}}元</text>
+        <text>{{item.cons}}阅币</text>
+      </view> 
+    </block>     
+  </view>
+</view>
+
+<view class="page-section">
+  <view>
+    <text class='pay-title'>选择支付方式</text>
+  </view>
+  <view  class="pay-list">
+    <view  class="pay-item">
+      <image src="../../image/recharge/wx.png" class="pay-item-icon"/>
+      <text class='pay-item-tex'>微信支付</text>
+      <radio class='pay-radio' value="1" checked="true"/>
+    </view>
+  </view>
+</view>
+
+<button bindtap='commitRecharge' class='btn-submit'>提交</button>
