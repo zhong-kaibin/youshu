@@ -3,13 +3,13 @@
 <template is="head" data="{{title: '分类'}}" /> -->
 
 <view class="page-list line-top">
-  <view wx:for="{{list}}" wx:for-item="superItem" wx:key="{{superItem.key}}">
+  <view wx:if="{{superItem.subCategory.length !== 0}}" wx:for="{{list}}" wx:for-item="superItem" wx:key="{{superItem.key}}">
     <view class="list-hd">
       <text class="item-title {{color[superItem.key]}}">{{superItem.category}}</text>
     </view>
     <view class="list">
       <block>
-        <view bindtap='naviToBookList' data-title="{{item.cate_name}}" data-cate_id="{{item.cate_id}}"
+        <view  bindtap='naviToBookList' data-title="{{item.cate_name}}" data-cate_id="{{item.cate_id}}"
           class="list-item girl {{color[superItem.key]}}" wx:key="{{item.cate_id}}" wx:for="{{superItem.subCategory}}">
             <image wx:if="{{item.img_url}}" class="item-img"  src="{{item.img_url}}"></image>
             <view class="item-text">

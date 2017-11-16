@@ -7,20 +7,20 @@
   <view wx-if="{{setting}}" class='reader-hd'>
     <text>{{title}}</text>
   </view>
-  <scroll-view scroll-y	="true" style='height:100vh' 
-  bindscrolltolower="drawBottom" upper-threshold="5" 
-  scroll-into-view="{{toView}}"  bindscroll="scroll" bindtap='tapShowSetting'>
-    <view  id="{{'chapter'+ page.index}}" wx:for-index="idx"
-     wx:for-item="page" wx:for="{{list}}"  wx:key="{{page.index}}">
+  <scroll-view scroll-y="true" style='height:100vh' bindscrolltolower="drawBottom" upper-threshold="5" scroll-into-view="{{toView}}" bindscroll="scroll" bindtap='tapShowSetting'>
+    <view id="{{'chapter'+ page.index}}" wx:for-index="idx" wx:for-item="page" wx:for="{{list}}" wx:key="{{page.index}}">
       <!-- 图片展示页 -->
-      <form bindsubmit="bindpopsubmit"  report-submit='true'>
-       <button form-type='submit' id="comicBtn"  class='img-btn'>
-      <view wx-if="{{page.pay_type === 1}}" class='page-section'>
-        <image data-idx="{{index}}" data-index="{{idx}}"  mode='widthFix' bindload="imgLoad"
-         class='comic-image' wx:key="{{index}}" wx:for='{{page.content}}' src='{{item}}'></image>
-      </view>
-      </button>
-       </form> 
+      <form bindsubmit="bindpopsubmit" report-submit='true'>
+        <button form-type='submit' id="comicBtn" class='img-btn'>
+          <view wx-if="{{page.pay_type === 1}}" class='page-section'>
+            <block wx:key="{{index}}" wx:for='{{page.content}}'>
+              <image data-idx="{{index}}" data-index="{{idx}}"
+               bindload="imgLoad" style='diplay:none;display:block;height:0' lazy-load='true'  src='{{item}}'></image>
+              <image  mode='widthFix'  class='comic-image' src='{{page.completeContent[index] || "/image/comic-loading.png"}}'></image>
+            </block>
+          </view>
+        </button>
+      </form>
 
       <!-- 购买页 -->
       <view wx-if="{{page.pay_type === 0}}" class="buy">
@@ -38,7 +38,7 @@
             <radio bindtap='buyChange' checked='{{auto_buy}}' color='#5db4fe'></radio>
             <text class='tip'>下一章自动购买 （可在个人中心取消）</text>
           </view>
-          <form bindsubmit="bindpopsubmit"  report-submit='true'>
+          <form bindsubmit="bindpopsubmit" report-submit='true'>
             <button bindtap='tapBuyChapter' data-index="{{page.index}}" class='btn-buy'>{{buyBtnName}}</button>
           </form>
           <!-- <button wx-if="{{fromFree}}" size="mini" bindtap='getLastChapter'> 返回上一章</button> -->
@@ -52,10 +52,10 @@
       <view bindtap='getLastChapter' class="set-foot-list-item">
         <!-- <image src='../../image/reader/left.png'></image> -->
       </view>
-      <view  bindtap='goChapterList' class="set-foot-list-item">
+      <view bindtap='goChapterList' class="set-foot-list-item">
         <image mode='scaleToFill' src='../../image/center.png'></image>
       </view>
-      <view bindtap='getNextChapter'  class="set-foot-list-item">
+      <view bindtap='getNextChapter' class="set-foot-list-item">
         <image mode='scaleToFill' src='../../image/right.png'></image>
       </view>
     </view>

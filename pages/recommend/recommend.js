@@ -1,6 +1,7 @@
 // home.js
 var unit = require('../../utils/util.js')
 var pop = require('../common/pop.js')
+var prompt = require('../../utils/prompt.js')
 
 var app = getApp()
 Page({
@@ -14,7 +15,8 @@ Page({
     sex: 1,
     banner_list: [],    
     top_list:[],
-    comic_data:[]
+    comic_data:[],
+    current:0,//修复切换banner的bug
   },
   selected: function (e) {
     this.setData({
@@ -28,14 +30,7 @@ Page({
     })
     this.getJSON()
   },
-  tapJumpAppPop: function(){
-    unit.reportAnalytics('text_dota', {});
-    wx.showModal({
-      title: '更多书籍',
-      content: '请前往各大应用市场搜索下载“口袋有书”',
-      showCancel: false
-    })
-  },
+
   /**
    * 跳转搜索页
    */
@@ -79,17 +74,19 @@ Page({
       var banners = data.banner_list.filter(function (val) {
         return val
       })
-      banners.unshift({
-        wxurl: '/activity/mind/mind',
-        banner_url:'https://ssl.kdyoushu.com/applet/mind_test/at_test_banner.png'
-      })
+      //穿越测试活动
+      // banners.unshift({
+      //   wxurl: '/activity/mind/mind',
+      //   banner_url:'https://ssl.kdyoushu.com/applet/mind_test/at_test_banner.png'
+      // })
       that.setData({
         banner_list: banners,
         hot_data: data.hot_data,
         top_list: data.top_list,
         new_data: data.new_data,
         finish_data: data.finish_data,
-        comic_data: data.comic_data
+        comic_data: data.comic_data,
+        current:0
       })
     })
   },
@@ -106,12 +103,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+  
     var code = wx.getStorageSync('code')
     unit.showLoading({
       title: '正在加载',
     })
-
+    console.log('--------------')
     getApp().getLoginKey(()=>{
       //展示 bind pop bug: 因为要判断登陆信息存在是否绑定，所以再一个接口请求完再调用
       this.setData({

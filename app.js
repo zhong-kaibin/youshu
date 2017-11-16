@@ -1,18 +1,19 @@
 //app.js
-var unit = require('./utils/util.js')
-var config = require('/config.js')
-var { recordPayChapter } = require('./utils/chapter.js')
+const unit = require('./utils/util.js')
+const config = require('/config.js')
+const { recordPayChapter } = require('./utils/chapter.js')
 App({
   onLaunch: function (options) {
     console.log(options, 'optionsoptions')
-    var query = options.query
+    const query = options.query
     this.s = query.s || 'gza5'
-    this.globalData.channel = query.s || 'gza5'
+    this.path = options.path
+
     //从模板里进来   ****recommend_from_template  推荐页  reader_from_template  阅读器****** D
     if (query.collection){
       unit.reportAnalytics(query.collection, {})
     }
-
+    // 上报打开小程序
     unit.reportAnalytics('enter_applet', {
       channel: this.s,
       path: options.path, 
@@ -57,7 +58,6 @@ App({
     }
   },
 
-
   login: function (cb) {
     var self = this
     wx.login({
@@ -66,7 +66,7 @@ App({
           console.log('loginSuccess', res.code)
           self.getAllUserInfo(function (user) {
             wx.request({
-              url: unit.getApi(`/user/oauth_login?platform=applet&s=${self.globalData.channel}&v=${config.version}`),
+              url: unit.getApi(`/user/oauth_login?platform=applet&s=${self.s}&v=${config.version}`),
               method: "POST",
               header: {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -85,7 +85,13 @@ App({
                   wx.setStorageSync('user_info', res.user_info)
 
                   self.login_key = res.login_key
-                  cb(res.login_key)   
+                  cb(res.login_key)  
+                  if (res.is_register == 1){
+                    unit.reportAnalytics('new_user_login',{
+                        path: self.path,
+                        channel:self.s
+                      })
+                  } 
                 }else{
                   wx.showToast({
                     title: res.data.msg || '',
@@ -149,8 +155,4 @@ App({
       }
     })
   },
-  
-  globalData: {
-    userInfo: null
-  }
 })

@@ -26,19 +26,43 @@ page{
   margin-bottom: 28rpx;
   color: #9b9b9b;
   font-size: 0.9rem;
+  position: relative
 }
 .list-item.active{
   border: 2rpx solid #5db4fe;
   box-shadow: 0 0 20rpx #5db4fe
 }
-.list-item text{
+.item-limit{
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  top: -5rpx;
+  left: -5rpx;
+}
+.item-gold{
+  white-space: nowrap;
+  font-size: 24rpx;
+}
+.give .present{
+  display: none
+}
+.item-present{
+  color: #f92533;
+  font-size: 24rpx;
+}
+.item-bottom{
   display: block;
+  margin-top: -2rpx
+}
+/* .acitve */
+.list-item text{
   line-height: 1.5;
 }
 .item-text{
   font-size: 1.2rem;
   color: #333333;
   margin-top:35rpx;
+  display: block;
 }
 .list-item.on{
   border: 1rpx solid #5db4fe;

@@ -3,6 +3,7 @@ var unit = require('../../utils/util.js')
 var reader = require('./functions .js')
 var mix = require('./mix.js')
 var pop = require('../common/pop.js')
+var fn = require('../../utils/fn.js')
 
 var { getAllChapter, modifyPayChapter } = require('../../utils/chapter.js')
 var { setReadedBook, getBookInfo } = require('../../utils/book.js')
@@ -101,7 +102,6 @@ Page({
 
 
   getJSON: function (index, cb) {
-    console.log(111)
     var self = this
     //获取所有章节列表
     var { book_id } = this.data
@@ -124,6 +124,14 @@ Page({
           var isAuto = list.some(function (item) {
             return item.book_id == id
           })
+
+          //上报购买页面
+          unit.reportAnalytics('enter_to_buy_page2', {
+            pay_type: 1,
+            auto_buy: isAuto.toString(),
+            book_name: self.data.book_name,
+            chapter_index: self.data.index,
+          });
 
           //自动购买就购买
           if (isAuto) {
@@ -272,8 +280,15 @@ Page({
         wx.setNavigationBarTitle({
           title: info.book_name
         })
+
+        //获取每天奖励
+        fn.fetchAwardEveryday()
+        
       })
     })
+
+    //获取每天奖励
+    fn.fetchAwardEveryday()
   },
 
   tapShowSetting: function () {
@@ -290,56 +305,55 @@ Page({
     this.getNextChapter()
   },
 
-  // pullDown: function () {
-  //   if (this.data.loading) return
-  //   this.getLastChapter()
-  // },
-
   //图片加载
   imgLoad:function(e){
     var { index, idx } = e.currentTarget.dataset
     this.data.scrollTops[index + '-' + idx] = e.target.offsetTop
-    // console.log(this.data.scrollTops)
+    var list = this.data.list
+    if (!list[index].completeContent) list[index].completeContent = [];
+      (this.data.list[index].completeContent)[idx] = (this.data.list[index].content)[idx]
+      
+    this.setData({
+      list: this.data.list
+    })
   },
 
+// 滑动设置标题
   scroll: function(e){
     if (e.detail.scrollTop > this.data.scrollTops[this.data.nextScrollIndex]){
-      var inArr = this.data.nextScrollIndex.split('-')
-      var index = parseInt(inArr[0])
-      var idx = parseInt(inArr[1])
-      var { nextScrollIndex, scrollIndex, lastScrollIndex, list } = this.data
+      var [parentIndex, index] = this.data.nextScrollIndex.split('-')      
+      parentIndex = parseInt(parentIndex)
+      index = parseInt(index)
+      var { nextScrollIndex, scrollIndex, lastScrollIndex, list, scrollTops } = this.data
 
       this.data.lastScrollIndex = scrollIndex
-      this.data.nextScrollIndex = this.data.scrollTops[inArr[0] + '-' + (parseInt(inArr[1]) +1) ] && inArr[0] + '-' + (parseInt(inArr[1]) +1 )||
-        this.data.scrollTops[parseInt(inArr[0]) + 1 + '-0' ] && parseInt(inArr[0]) + 1 + '-0'  || this.data.nextScrollIndex
-      
+      this.data.nextScrollIndex = scrollTops[parentIndex + '-' + (parseInt(index) + 1)] && parentIndex + '-' + (parseInt(index) +1 )||
+        scrollTops[parseInt(parentIndex) + 1 + '-0'] && parseInt(parentIndex) + 1 + '-0'  || nextScrollIndex
       this.data.scrollIndex = this.data.nextScrollIndex
+
        this.setData({
-         title: `${(list[index].chapter_name)}: ${1+idx}`,
-         index: list[index].index
+         title: `${(list[parentIndex].chapter_name)}: ${1 + index}`,
+         index: list[parentIndex].index
        })
        
     } else if (e.detail.scrollTop < this.data.scrollTops[this.data.lastScrollIndex]){
-      var inArr = this.data.nextScrollIndex.split('-')
-      var index = parseInt(inArr[0])
-      var idx = parseInt(inArr[1])
-      var { nextScrollIndex, scrollIndex, lastScrollIndex, list } = this.data
+      var [parentIndex, index] = this.data.nextScrollIndex.split('-')
+      parentIndex = parseInt(parentIndex)
+      index = parseInt(index)
+      var { nextScrollIndex, scrollIndex, lastScrollIndex, list, scrollTops } = this.data
 
-      var st = this.data.scrollTops
-      var last1 = index + '-' + (idx - 1)
+      var possibleIndex1 = parentIndex + '-' + (index - 1)
+      var possibleIndex2 = parentIndex - 1 >= 0 ? (parentIndex - 1) + '-' + (list[parentIndex -1].content.length -1) : '0-0'
 
-      var last2 = index - 1 >= 0 ? (index - 1) + '-' + (list[index -1].content.length -1) : '0-0'
-
-      this.data.lastScrollIndex = st[last1] && last1 ||
-        st[last2] && last2 || nextScrollIndex
+      this.data.lastScrollIndex = scrollTops[possibleIndex1] && possibleIndex1 ||
+        scrollTops[possibleIndex2] && possibleIndex2 || nextScrollIndex
 
       this.data.nextScrollIndex = scrollIndex
       this.data.scrollIndex = lastScrollIndex
 
-      // console.log(last1,last2)  
       this.setData({
-        title: `${list[index].chapter_name}: ${1+idx}`,
-        index: list[index].index
+        title: `${list[parentIndex].chapter_name}: ${1 + index}`,
+        index: list[parentIndex].index
       })
     }
   },

@@ -40,6 +40,10 @@ Page({
         item.key = key
         item.category = data.parent_list[key]
         item.subCategory = data.type_list[key]
+        //删除为空的书 固定值
+        var delectBoooks = /3026|3016|3001|3028/
+        item.subCategory = item.subCategory.filter(val => !val.cate_id.toString().match(delectBoooks))
+
         list.push(item)
       }
       that.setData({

@@ -1,5 +1,6 @@
 // pages/recharge/recharge.js
 var unit = require('../../utils/util.js')
+var pop = require('../../utils/prompt.js')
 var recharge = require('../../utils/recharge.js')
 Page({
 
@@ -68,7 +69,7 @@ Page({
           paySign: pay_info.paySign,
           success: function (res) {   
             var { money, backurl } = self.data
-            wx.reportAnalytics('recharge_success', {
+            unit.reportAnalytics('recharge_success', {
               money,
               backurl,
               channel: getApp().s
@@ -99,13 +100,20 @@ Page({
    */
   onLoad: function (options) {
     var { backurl } = options
-    backurl = decodeURIComponent(backurl)
+    backurl = backurl && decodeURIComponent(backurl)
     recharge.fetchConfig((data) =>{
+      var give = {
+        30: 10,
+        50: 20,
+        98: 50,
+        198:100
+      }
       var payList = data.recharge_options.map((val,index) =>{
         return {
           money: val,
-          cons: val * 100,
-          isClick: index == this.data.index
+          cons: parseInt(val * 100),
+          isClick: index == this.data.index,
+          present: give[val] || false
         }
       })
         this.setData({

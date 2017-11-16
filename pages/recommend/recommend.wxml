@@ -1,26 +1,24 @@
 <!--home.wxml-->
-<import src="../common/pop.wxml"/>
+<import src="../common/pop.wxml" />
 <!-- <import src="../common/moreInApp.wxml"/> -->
 
-<template is="pop" data="{{...bindPop}}"/>
+<template is="pop" data="{{...bindPop}}" />
 <view class="r-header">
-  <image id="text" src="{{logo}}"  class="hd-l" />
+  <image id="text" src="{{logo}}" class="hd-l" />
   <image bindtap="search" src="{{searchImg}}" class="hd-r" />
   <view class="hd-tab">
     <text class="{{sex ==1 ?'tabon':'tab'}}" bindtap="selected">男生</text>
     <text class="{{sex ==2 ?'tabon':'tab'}}" bindtap="selected1">女生</text>
   </view>
 </view>
- 
- <swiper circular="true" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
-  <block wx:key='{{index}}' wx:for="{{banner_list}}">
-      <swiper-item>
-        <image data-wxurl='{{item.wxurl}}' data-index="{{index}}" bindtap='tapBanner' src="{{item.banner_url}}" mode="aspectFill" class="slide-image" />
-      </swiper-item>
-  </block>
-</swiper> 
 
- <!-- <view class="flex-wrp" style="flex-direction:row;">
+<swiper current="{{current}}" circular="true" indicator-dots="true" autoplay="true" interval="3000" duration="500">
+  <swiper-item wx:key='{{item.banner_url}}' wx:for="{{banner_list}}">
+    <image data-wxurl='{{item.wxurl}}' data-index="{{index}}" bindtap='tapBanner' src="{{item.banner_url}}" mode="scaleToFill" class="slide-image" />
+  </swiper-item>
+</swiper>
+
+<!-- <view class="flex-wrp" style="flex-direction:row;">
   <view wx:key="{{inex}}" wx:for="{{top_list}}" class="flex-item" bindtap='navigate_top' data-url='{{item.wx_activity}}'>
       <image src="{{item.icon_url}}" class="flex-icon" />
       <text class="flex-text">{{item.title}}</text>
@@ -46,49 +44,55 @@
 <view class="page-section">
   <view class="classify-hd">
     <text class="classify-title">热门推荐</text>
-    <text class="classify-more" bindtap='goList' data-params='hot' data-title='热门推荐'>查看更多></text>
+    <view class="classify-more" bindtap='goList' data-params='hot' data-title='热门推荐'>查看更多
+      <image mode='aspectFill' src='/image/home-right.png' class='icon-more'></image>
+    </view>
   </view>
   <view class="classify-body">
     <view class="list">
       <block wx:key="{{item.book_id}}" wx:for="{{hot_data}}">
         <view class="list-item">
-          <navigator url= "{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
-              <image src="{{item.cover}}" mode="widthFix" class="item-img" />
+          <navigator url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
+            <image src="{{item.cover}}" mode="scaleToFill" class="item-img" />
             <text class="item-text">{{item.book_name}}</text>
-          </navigator>    
+          </navigator>
         </view>
       </block>
     </view>
   </view>
 
-   <view class="classify-hd">
+  <view class="classify-hd">
     <text class="classify-title">精品彩漫</text>
-    <text class="classify-more" bindtap='goList' data-params='comic' data-title='精品彩漫'>查看更多></text>
+    <view class="classify-more" bindtap='goList' data-params='comic' data-title='精品彩漫'>查看更多
+      <image mode='aspectFill' src='/image/home-right.png' class='icon-more'></image>
+    </view>
   </view>
   <view class="classify-body">
     <view class="list">
       <block wx:key="{{item.book_id}}" wx:for="{{comic_data}}">
         <view class="list-item">
-          <navigator url= "{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
-              <image src="{{item.cover}}" mode="widthFix" class="item-img" />
+          <navigator url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
+            <image src="{{item.cover}}" mode="scaleToFill" class="item-img" />
             <text class="item-text">{{item.book_name}}</text>
-          </navigator>    
+          </navigator>
         </view>
       </block>
     </view>
   </view>
   <view class="classify-hd">
     <text class="classify-title">新书抢先</text>
-    <text class="classify-more" bindtap='goList' data-params='new' data-title="新书抢先">查看更多></text>
+    <view class="classify-more" bindtap='goList' data-params='new' data-title="新书抢先">查看更多
+      <image mode='aspectFill' src='/image/home-right.png' class='icon-more'></image>
+    </view>
   </view>
   <view class="classify-body">
     <view class="list">
       <block wx:key="{{item.book_id}}" wx:for="{{new_data}}">
         <view class="list-item">
-          <navigator url= "{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
-              <image src="{{item.cover}}" mode="widthFix" class="item-img" />
+          <navigator url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
+            <image src="{{item.cover}}" mode="scaleToFill" class="item-img" />
             <text class="item-text">{{item.book_name}}</text>
-          </navigator>    
+          </navigator>
         </view>
       </block>
     </view>
@@ -96,22 +100,24 @@
 
   <view class="classify-hd">
     <text class="classify-title">完结经典</text>
-    <text class="classify-more" bindtap='goList' data-params='finish'  data-title="完结经典">查看更多></text>
+    <view class="classify-more" bindtap='goList' data-params='finish' data-title="完结经典">查看更多
+      <image mode='aspectFill' src='/image/home-right.png' class='icon-more'></image>
+    </view>
   </view>
   <view class="classify-body">
     <view class="list">
       <block wx:key="{{item.book_id}}" wx:for="{{finish_data}}">
         <view class="list-item">
-          <navigator url= "{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
-              <image src="{{item.cover}}" mode="widthFix" class="item-img" />
+          <navigator url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
+            <image src="{{item.cover}}" mode="scaleToFill" class="item-img" />
             <text class="item-text">{{item.book_name}}</text>
-          </navigator>    
+          </navigator>
         </view>
       </block>
     </view>
   </view>
-  
-  
+
+
 </view>
 
- <!-- <template is="moreInApp"/> -->
+<!-- <template is="moreInApp"/> -->

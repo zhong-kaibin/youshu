@@ -39,7 +39,7 @@
   <view class='list'>
     <block wx:key="{{item.book_id}}" wx:for="{{like_book_list}}">
       <view data-book_id='{{item.book_id}}' class='list-item' bindtap='goOtherBook'>
-          <image class='item-img' mode="widthFix" src="{{item.cover}}" />
+          <image class='item-img' mode="aspectFill" src="{{item.cover}}" />
           <text class='item-title'>{{item.book_name}}</text>
       </view>
 

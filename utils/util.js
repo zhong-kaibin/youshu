@@ -1,5 +1,5 @@
 var config  = require('../config.js')
-
+var pop = require('./prompt.js')
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -76,26 +76,16 @@ function getJSON(api, callback, parmas = {}, force) {
           if (time >= 0) getJSON(_api, callback, parmas, true)
         }
         else {
-
-          wx.showToast({
-            title: res.data.msg || '服务器出错了~',
-            icon: ''
-          })
+          pop.toastSad(res.data.msg || '服务器出错了~')
         }
       },
       fail: function (error) {
         hideLoading()
         console.log(error, 'err')
-        wx.showToast({
-          title: '网络出错了~',
-          icon: ''
-        })
+        pop.toastSad('网络出错了~')
         if (parmas.error){
           parmas.error()
         }
-      },
-      complete: function () {
-        wx.stopPullDownRefresh()
       }
     })
 
@@ -211,11 +201,18 @@ function hideLoading() {
   }
 }
 
+//统计api上报
 function reportAnalytics(e, obj) {
+  for(var key in obj){
+    if(obj[key] === undefined) obj[key] = ''
+  }
+  console.log('report' ,e, obj)
   if (wx.reportAnalytics) {
     wx.reportAnalytics(e, obj)
   }
 }
+
+//提示版本低升级
 function hintNotExist() {
   wx.showModal({
     title: '版本过低',

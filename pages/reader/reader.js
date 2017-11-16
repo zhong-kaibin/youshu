@@ -2,6 +2,8 @@
 var unit = require('../../utils/util.js')
 var pop = require('../common/pop.js')
 
+var fn = require('../../utils/fn.js')
+
 var { getAllChapter, modifyPayChapter } = require('../../utils/chapter.js')
 var { setReadedBook, getBookInfo } = require('../../utils/book.js')
 var { recordReading } = require('../../utils/chapter.js')
@@ -36,6 +38,7 @@ Page({
 
     bindBannerShow: false
   },
+
   //下一章
   getNextChapter: function (e) {
     if (this.data.index == this.data.chapterList.length - 1) {
@@ -152,6 +155,15 @@ Page({
           var isAuto = list.some(function (item) {
             return item.book_id == id
           })
+
+          //上报购买页面
+          unit.reportAnalytics('enter_to_buy_page2', {
+            pay_type: 1,
+            auto_buy: isAuto.toString(),
+            book_name: self.data.book_name,
+            chapter_index: self.data.index ,
+          });
+
           self.data.isAuto = isAuto
           //自动购买就购买
           if (isAuto) {
@@ -291,8 +303,10 @@ Page({
 
     //获取后才记录，防止二次登陆
     this.getJSON(function(){
+
       //展示 bind pop
       self.showBindPop()
+
       //记录阅读过书籍
       setReadedBook(book_id, info => {
         self.data.book_name = info.book_name
@@ -300,6 +314,8 @@ Page({
         wx.setNavigationBarTitle({
           title: info.book_name
         })
+        //获取每天奖励
+        fn.fetchAwardEveryday()
       })
     })
 

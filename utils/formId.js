@@ -2,10 +2,11 @@
 var unit = require('./util.js')
 function bindpopsubmit(e) {
   unit.get('/other/collating_message?form_id=' + e.detail.formId, function(){
-    console.log('add collating_message Success')
-    wx.reportAnalytics('form_submit', {
+    // console.log('add collating_message Success')
+    unit.reportAnalytics('form_submit', {
       channel: getApp().s,
-      btn: e.detail.target.id
+      btn: e.detail.target.id,
+      c: getApp().p
     });
   })
 }
