@@ -2,6 +2,7 @@
 var unit = require('../../utils/util.js')
 var formId = require('../../utils/util.js')
 var pop = require('../common/pop.js')
+var network = require('../../utils/network.js')
 var { setBookInfo } = require('../../utils/book.js')
 var { recoverReading } = require('../../utils/chapter.js')
 var { addToShelf } = require('../../utils/shelf.js')
@@ -19,7 +20,7 @@ Page({
 
   //加入书架
   addToShelf: function () {
-    if (!this.data.detail)return
+    if (!this.data.detail) return
     addToShelf(this.data.detail.book_id, () => {
       this.setData({
         is_myself: 1
@@ -44,27 +45,29 @@ Page({
     var { chapter_num, book_name, is_comic } = this.data.detail
     var { book_id } = this.data
     wx.navigateTo({
-      url: `/pages/chapterList/chapterList?book_id=${book_id}&total=${chapter_num}&book_name=${book_name}&is_comic=${is_comic}`   
-       })
+      url: `/pages/chapterList/chapterList?book_id=${book_id}&total=${chapter_num}&book_name=${book_name}&is_comic=${is_comic}`
+    })
   },
 
   getJSON: function (cb) {
     var self = this
     var book_id = this.data.book_id
-    unit.get_wait('/book/detail?book_id=' + book_id, function (res) {
-      var user_id = unit.getUserId()      
-      unit.get(`/book/book_channel?book_id=${book_id}&user_id=${user_id}&type=display`, function () { })      
-      var { book_detail, like_book_list, is_myself } = res.data
-      setBookInfo(book_detail)
-      book_detail.word_count = unit.formatNum(book_detail.word_count)
-      book_detail.update_time = book_detail.update_time.split(' ')[0]
-      self.setData({
-        detail: book_detail,
-        like_book_list: like_book_list,
-        is_myself: is_myself === undefined ? -1 : is_myself
-      })
-      if (cb) cb()
-
+    network.fetch_wait('/book/detail?book_id=' + book_id, {
+      needCheckAuthor: true,
+      success(data, res) {
+        var user_id = unit.getUserId()
+        unit.get_checkAuthor(`/book/book_channel?book_id=${book_id}&user_id=${user_id || ''}&type=display`, function () { })
+        var { book_detail, like_book_list, is_myself } = data
+        setBookInfo(book_detail)
+        book_detail.word_count = unit.formatNum(book_detail.word_count)
+        book_detail.update_time = book_detail.update_time.split(' ')[0]
+        self.setData({
+          detail: book_detail,
+          like_book_list: like_book_list,
+          is_myself: is_myself === undefined ? -1 : is_myself
+        })
+        if (cb) cb()
+      }
     })
 
     recoverReading(book_id, function (index) {
@@ -82,7 +85,7 @@ Page({
     this.setData({
       book_id: options.book_id
     })
-    this.getJSON(function(){
+    this.getJSON(function () {
       //展示 bind pop
       self.showBindPop()
     })
@@ -128,7 +131,7 @@ Page({
       path: `pages/bookDetail/bookDetail?book_id=${this.data.detail.book_id}`
     }
   },
-  onHide: function(){
+  onHide: function () {
     console.log('onhide')
   }
 })

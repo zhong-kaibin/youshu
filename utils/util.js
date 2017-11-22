@@ -30,6 +30,7 @@ function isEmptyObject(e) {
 }
 
 //force强制在code=-99时强制登陆
+//此接口是兼容旧版本，新请求使用netWork里的
 function getJSON(api, callback, params = {}, force){
   netWork.request({
     url: api,
@@ -40,9 +41,17 @@ function getJSON(api, callback, params = {}, force){
     fail(){
       if (parmas.error) parmas.error()
     },
+    ...params,
     forceLogin: force,
-    loading: params.loading
+    loading: params.loading,
   })
+}
+//带Author
+function get_checkAuthor(api, callback, params = {}, force) {
+  getJSON(api, callback, {
+    needCheckAuthor: true,
+    ...params,
+  }, force)
 }
 
 //有加载提示的获取
@@ -53,6 +62,14 @@ function get_wait(api, callback, noDeal) {
   })
 }
 
+//不带登陆
+function get_wait_checkAuthor(api, callback, noDeal) {
+  getJSON(api, callback, {
+    loading: true,
+    needCheckAuthor: true,
+    noDeal, // 不处理数据直接返回
+  })
+}
 function post(obj = {}, force = false){
   var { url, data = {}, success, ...parmas } = obj
   netWork.request({
@@ -173,5 +190,8 @@ module.exports = {
   getUserId: getUserId,
   getUserInfo: getUserInfo,
   updateUserInfo: updateUserInfo,
+
+  get_wait_checkAuthor: get_wait_checkAuthor,
+  get_checkAuthor: get_checkAuthor
 }
 

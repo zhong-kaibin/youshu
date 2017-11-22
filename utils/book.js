@@ -44,7 +44,7 @@ function getBookInfo(book_id, cb) {
     cb(books[book_id])
   } 
   else {
-    unit.get_wait('/book/detail?book_id=' + book_id, function (res) {
+    unit.get_wait_checkAuthor('/book/detail?book_id=' + book_id, function (res) {
       var { book_detail, is_myself} = res.data
       if (cb) cb(book_detail)
       if (is_myself) book_detail.is_myself = is_myself

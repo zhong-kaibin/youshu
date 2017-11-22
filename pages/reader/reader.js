@@ -121,20 +121,20 @@ Page({
     var self = this
     //获取所有章节列表
     var { book_id, index, chapter_id } = this.data
-    getAllChapter(this.data.book_id, function (list) {     
-      if (!index){
+    getAllChapter(this.data.book_id, function (list) {
+      if (!index) {
         var chapter_id = self.data.chapter_id
         for (var i = 0; i < list.length; i++) {
-          if (list[i].chapter_id == chapter_id){
+          if (list[i].chapter_id == chapter_id) {
             index = self.data.index = i;
             break;
           }
         }
       }
-     
+
       var data = list[index]
       var { volume_id, chapter_id, pay_type, cost_money, chapter_name } = data
-      console.log(pay_type, index,  'pay_type')
+      console.log(pay_type, index, 'pay_type')
       self.setData({
         book_id,
         cost_money,
@@ -147,8 +147,8 @@ Page({
       //pay_type：1 已经购买，获取内容
       if (pay_type === 1) {
         self.fetchContent()
-        
-        if(cb)cb()
+
+        if (cb) cb()
       } else {
         //判断是否在自动购买列表
         getAutoBuyList(list => {
@@ -162,7 +162,7 @@ Page({
             pay_type: 1,
             auto_buy: isAuto.toString(),
             book_name: self.data.book_name,
-            chapter_index: self.data.index ,
+            chapter_index: self.data.index,
           });
 
           self.data.isAuto = isAuto
@@ -179,7 +179,7 @@ Page({
 
             //发送收集信息
             var user_id = unit.getUserId()
-            unit.get(`/book/chapter_channel?book_id=${book_id}&user_id=${user_id}&volume_id=${volume_id}&chapters=${chapter_id}&type=read`, function () {})
+            unit.get(`/book/chapter_channel?book_id=${book_id}&user_id=${user_id}&volume_id=${volume_id}&chapters=${chapter_id}&type=read`, function () { })
           }
         })
 
@@ -188,7 +188,7 @@ Page({
 
     //记录阅读到的页数
     recordReading(book_id, index)
-    
+
 
   },
 
@@ -202,15 +202,15 @@ Page({
       } else {
         content = content.split('\n')
       }
-      
+
       self.setData({
         content: content,
         pay_type: 1
       })
       unit.hideLoading()
       wx.stopPullDownRefresh()
-     
-     //发送收集信息
+
+      //发送收集信息
       var user_id = unit.getUserId()
       console.log(user_id, 'user_id')
       unit.get(`/book/chapter_channel?book_id=${book_id}&user_id=${user_id}&volume_id=${volume_id}&chapters=${chapter_id}&type=read`, function () { })
@@ -256,7 +256,7 @@ Page({
           //修改购买信息
           modifyPayChapter(book_id, index)
           self.getJSON()
-        } 
+        }
         //可能没记录购买信息 -5时候直接购买 
         else if (res.data.code == -5) {
           modifyPayChapter(book_id, index)
@@ -267,7 +267,7 @@ Page({
           // wx.showToast({
           //   title: '用户余额不足，请充值',
           // })
-          self.navigateTodRecharge()         
+          self.navigateTodRecharge()
           // if (this.data.isAuto) {
           // }
         }
@@ -278,7 +278,7 @@ Page({
   //navi充值页
   navigateTodRecharge: function () {
     var pageLen = getCurrentPages().length || 0
-    var {book_id, index} = this.data
+    var { book_id, index } = this.data
     var backurl = encodeURIComponent(`/pages/reader/reader?book_id=${book_id}&index=${index}`)
     wx.redirectTo({
       url: '/pages/recharge/recharge?backurl=' + backurl,
@@ -302,17 +302,22 @@ Page({
     this.setData(parma)
 
     //获取后才记录，防止二次登陆
-    this.getJSON(function(){
+    this.getJSON(function () {
       //展示 bind pop //需在登陆后
       self.showBindPop()
-      // 是否展示底部绑定banner//需在登陆后
+      //未搜权不用处理 手机绑定// 是否展示底部绑定banner//需在登陆后
       var user_info = unit.getUserInfo()
-      if (!parseInt(user_info.phone)) {
-        self.setData({ bindBannerShow: true })
-      }
-      
+      netWork.checkAuthor()
+        .then(isAuthor => {
+          if (isAuthor) {
+            if (!parseInt(user_info.phone)) {
+              self.setData({ bindBannerShow: true })
+            }
+          }
+        })
+
     })
-    
+
     //获取每天奖励 //需在登陆后
     fn.fetchAwardEveryday()
 
@@ -322,9 +327,9 @@ Page({
       console.log(info, 'hadReaded')
       wx.setNavigationBarTitle({
         title: info.book_name
-      })  
+      })
     })
-   
+
     // 保持屏幕常亮
     if (wx.setKeepScreenOn) {
       wx.setKeepScreenOn({
@@ -334,7 +339,7 @@ Page({
     //设置亮度为机器默认亮度
     if (wx.getScreenBrightness) {
       wx.getScreenBrightness({
-        success: function (res){
+        success: function (res) {
           self.setData({
             ligthLevel: res.value * 100
           })
@@ -355,7 +360,7 @@ Page({
       unit.hintNotExist()
     }
   },
-  
+
   ligthDefaultChange: function () {
     this.ligthChange({ detail: { value: 50 } })
   },

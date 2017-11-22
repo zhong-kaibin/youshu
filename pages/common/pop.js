@@ -1,21 +1,27 @@
 //展示bind Pop
 var unit = require('../../utils/util.js')
 var formId = require('../../utils/formId.js')
-
+var netWork = require('../../utils/network.js')
 
 function showBindPop() {
-  var user_info = unit.getUserInfo()
-  if (wx.getStorageSync('newUser') || parseInt(user_info.phone) ) {
-    return
-  }
-  console.log(user_info, 'user_info pop')
-  this.setData({
-    bindPop: {
-      show: true
-    }
-  })
-  unit.reportAnalytics('bind_phone_show', {});
-  wx.setStorageSync('newUser', 1)
+  //对没有授权过的新用户不弹窗
+  netWork.checkAuthor()
+    .then(isAuthor=>{
+      if (isAuthor){
+        var user_info = unit.getUserInfo()
+        if (wx.getStorageSync('newUser') || parseInt(user_info.phone)) {
+          return
+        }
+        console.log(user_info, 'user_info pop')
+        this.setData({
+          bindPop: {
+            show: true
+          }
+        })
+        unit.reportAnalytics('bind_phone_show', {});
+        wx.setStorageSync('newUser', 1)
+      }
+    })
 }
 
 function forceBindPop(){

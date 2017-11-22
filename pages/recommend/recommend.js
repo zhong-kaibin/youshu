@@ -3,49 +3,79 @@ var unit = require('../../utils/util.js')
 var pop = require('../common/pop.js')
 var prompt = require('../../utils/prompt.js')
 var network = require('../../utils/network.js')
-
+var {fetchConfig} = require('../../utils/appConfig.js')
 var app = getApp()
 Page({
   ...pop,
   onLoad: function (options) {
-
-    var code = wx.getStorageSync('code')
-    unit.showLoading({
-      title: '正在加载',
-    })
-    console.log('--------------')
-    getApp().getLoginKey(() => {
-      //展示 bind pop bug: 因为要判断登陆信息存在是否绑定，所以再一个接口请求完再调用
+    fetchConfig(config => {
       this.setData({
-        sex: unit.getUserInfo().sex || 1
+        channel_types: config.channel_types,
+        channel_code: config.channel_types[0].channel_code
       })
+      //展示 bind pop bug: 因为要判断登陆信息存在是否绑定，所以在一个接口请求完再调用
       this.showBindPop()
       this.getJSON()
     })
-    
   },
+
+  getJSON: function (cb) {
+    var that = this
+    network.fetch('/book/v2/index', {
+      needCheckAuthor: true,
+      loading:true,
+      data:{
+        channel_code: this.data.channel_code
+      },
+      success: function (data) {
+        if (cb)cb()
+        var banners = data.banner_list.filter(function (val) {
+          return val
+        })
+        //穿越测试活动
+        // banners.unshift({
+        //   wxurl: '/activity/mind/mind',
+        //   banner_url:'https://ssl.kdyoushu.com/applet/mind_test/at_test_banner.png'
+        // })
+        that.setData({
+          banner_list: banners,
+          top_list: data.top_list,
+          book_shelf_data: data.book_shelf_data,
+          current: 0
+        })
+      }
+    })
+  },
+
   data: {
     logo: '../../image/hd-logo.png',
     searchImg: '../../image/search.png', 
     sex: 1,
     banner_list: [],    
     top_list:[],
-    comic_data:[],
     current:0,//修复切换banner的bug
+    book_shelf_data:[],
+    channel_types:[]
   },
-  selected: function (e) {
+  // selected: function (e) {
+  //   this.setData({
+  //     sex: 1
+  //   })
+  //   this.getJSON()
+  // },
+  // selected1: function (e) {
+  //   this.setData({
+  //     sex:2
+  //   })
+  //   this.getJSON()
+  // },
+  tapChannel:function(e){
+    var { channel_code } = e.currentTarget.dataset
     this.setData({
-      sex: 1
+      channel_code
     })
     this.getJSON()
   },
-  selected1: function (e) {
-    this.setData({
-      sex:2
-    })
-    this.getJSON()
-  },
-
   /**
    * 跳转搜索页
    */
@@ -58,7 +88,7 @@ Page({
   tapBanner: function(e){
     var { index, wxurl} = e.currentTarget.dataset
     if (wxurl){
-      return wx.navigateTo({
+      return unit.navigate({
         url: wxurl,
       })
     }
@@ -79,46 +109,27 @@ Page({
     })
   },
 
-  //get JSON
-  getJSON: function(){
-    var that = this
-    unit.get_wait('/book/index?sex=' + this.data.sex, function (res) {
-      //打开模板调试
-      // unit.get('/user/get_message', function () { })
-      var data = res.data
-      var banners = data.banner_list.filter(function (val) {
-        return val
+  //topList导航
+  naviTopList: function(e){
+    var { url, activity,title } = e.currentTarget.dataset
+    if (activity){
+      unit.navigate({
+        url: activity
       })
-      //穿越测试活动
-      // banners.unshift({
-      //   wxurl: '/activity/mind/mind',
-      //   banner_url:'https://ssl.kdyoushu.com/applet/mind_test/at_test_banner.png'
-      // })
-      that.setData({
-        banner_list: banners,
-        hot_data: data.hot_data,
-        top_list: data.top_list,
-        new_data: data.new_data,
-        finish_data: data.finish_data,
-        comic_data: data.comic_data,
-        current:0
-      })
-    })
-  },
-
-  //顶部导航
-  navigate_top: function(e){
-    var url = e.target.dataset.url
-    unit.navigate({
-      url: url
-    })
+    } else if (url){
+       wx.navigateTo({
+         url: `/pages/website/website?url=${url}&title=${title}`,
+       })
+    }
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getJSON()
+    this.getJSON(function(){
+      wx.stopPullDownRefresh()
+    })
   },
 
   /**

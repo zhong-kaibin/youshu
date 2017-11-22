@@ -2,7 +2,7 @@
 var unit = require('./util.js')
 var books ={}
 var waitToRecord=[]  //待记录
-
+var appConfig = require('./appConfig.js')
 // 记录看到的章节数
 function recordReading(book_id, readingIndex){
   wx.setStorage({
@@ -25,9 +25,8 @@ function  recoverReading(book_id, callback){
 function getAllChapter(book_id, callback){
   book_id = parseInt(book_id)
   //清空数据
-  unit.get('/other/config.json', function (res) {
-
-    if (res.data.applet_test == 1) {
+  appConfig.fetchConfig(function (config) {
+    if (config.applet_test == 1) {
       var chapter = []
     }else{
       if (books[book_id]) {
@@ -38,7 +37,7 @@ function getAllChapter(book_id, callback){
     }
 
     if (chapter.length === 0) {
-      unit.get(`/book/find_chapters?book_id=${book_id}&num=10000`, function (res) {
+      unit.get_checkAuthor(`/book/find_chapters?book_id=${book_id}&num=10000`, function (res) {
         callback(res.data.chapter_list)
         books[book_id] = res.data.chapter_list
         // wx.setStorage({

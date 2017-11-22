@@ -2,7 +2,7 @@
 const unit = require('./utils/util.js')
 const config = require('/config.js')
 const { recordPayChapter } = require('./utils/chapter.js')
-import { fetchConfig} from './utils/getConfig.js'
+import { fetchConfig} from './utils/appConfig.js'
 
 App({
   onLaunch: function (options) {
@@ -10,7 +10,6 @@ App({
     const query = this.query = options.query
     this.s = query.s || 'gza5'
     this.path = options.path
-    fetchConfig()
     //从模板里进来   ****recommend_from_template  推荐页  reader_from_template  阅读器****** D
     if (query.collection) {
       unit.reportAnalytics(query.collection, {})
@@ -147,18 +146,21 @@ App({
       content: '如需正常使用口袋阅读王，请按确定并在授权管理中选中“用户信息”，仅是获取用户公开的信息。',
       showCancel: true,
       success: function (res) {
+        //修复流程控制bug
+        self.requestOpen = false,
+        self.requestQueue = []
         if (res.confirm) {
           wx.openSetting({
             success: function success(res) {
               //授权成功手动调用当前页onload
-              var page = getCurrentPages()[0]
-              self.requestOpen = false,
-              self.requestQueue = []
-              page.onLoad(self.query)
+              var pages = getCurrentPages()
+              pages[pages.length -1].onLoad(self.query)
             }
           });
         } else {
-          self.showAutoModel()
+          wx.switchTab({
+            url: '/pages/recommend/recommend',
+          })
         }
       }
     })

@@ -1,6 +1,7 @@
 // personal.js
 //获取应用实例
 var unit = require('../../utils/util.js')
+var appConfig = require('../../utils/appConfig.js')
 var app = getApp()
 Page({
 
@@ -76,20 +77,21 @@ Page({
   getJSON: function (cb) {
     var self = this
     unit.get('/user/user_info', res => {
-      this.setData({
+      self.setData({
         userInfo: res.data
       })
-      unit.get('/other/config.json',function(res){
-        if (res.data.applet_test !=1 ){
-          self.setData({
-            showRecharge: true
-          })
-        }else{
-          self.setData({
-            showRecharge: false
-          })
-        }
-      })
+      if (cb)cb()
+    })
+    appConfig.fetchConfig(function(config){
+      if (config.applet_test != 1) {
+        self.setData({
+          showRecharge: true
+        })
+      } else {
+        self.setData({
+          showRecharge: false
+        })
+      }
     })
     this.getStorgeSize()
   },

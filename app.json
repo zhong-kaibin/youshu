@@ -20,7 +20,8 @@
     "pages/personal/page/about/about",
     "activity/mind/mind",
     "activity/mind/test",
-    "activity/mind/result"
+    "activity/mind/result",
+    "pages/website/website"
   ],
   "window": {
     "backgroundTextStyle": "light",

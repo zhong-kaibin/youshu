@@ -1,25 +1,68 @@
 import config from '../config.js'
 import pop from './prompt.js'
 
+
 var time = 3
+//如getSetting方法不存在, isAuthor为true, APP全接口强制getLoginKey
+var isAuthor;
+function checkAuthor(){
+  return new Promise((resolve, reject) =>{
+    if (isAuthor !== undefined){
+      resolve(isAuthor)
+    }else{
+      if (wx.getSetting) {
+        wx.getSetting({
+          success(res) {
+            if (!res.authSetting['scope.userInfo']) {
+              resolve(false)
+            } else {
+              resolve(true)
+            }
+          }
+        })
+      } else {
+        resolve(true)
+      } 
+    }  
+  })
+}
+
+
 const netWork = {
   request(params) {
-    const App = getApp()
-
-    let { url, success, handleCode = true,
-      needLogin = true, forceLogin = false,
-      fail, handleFail = false, error, handleError = true,
+    const App = getApp() 
+    let { url,
+      success,
+      handleCode = true,
+      needLogin = true, //默认需要登陆
+      forceLogin = false,//默认不强制登陆
+      needCheckAuthor = false,//****默认不检测授权,  如果检测到已经授权，都附带登陆信息； 没有授权就根据needLogin 确定是否需要登陆（登陆前要获得搜权*****）
+      fail, handleFail = false, 
+      error, handleError = true,
       loading = false, ...argus } = params
     url = netWork.getUrl(url)
-
     new Promise((resolve, reject) => {
-      if (needLogin) {
-        App.getLoginKey(login_key => {
-          resolve(login_key)
-        }, forceLogin)
-      } else {
-        resolve(null)
+      if (needCheckAuthor){
+        checkAuthor()
+        .then(isAuthor =>{
+          if (isAuthor){
+            App.getLoginKey(login_key => {
+              resolve(login_key)
+            }, forceLogin)
+          }else{
+            resolve(null)
+          }
+        })
+      }else{
+        if (needLogin) {
+          App.getLoginKey(login_key => {
+            resolve(login_key)
+          }, forceLogin)
+        } else {
+          resolve(null)
+        }
       }
+      
     }).then(login_key => {
       // console.error(needLogin,login_key)
       let baseQuery = {
@@ -33,7 +76,9 @@ const netWork = {
         url += '&'
       url += netWork.serializeUrlParams(baseQuery)
 
-      if (loading) pop.showLoading()
+      if (loading) pop.showLoading({
+        title: '正在加载'
+      })
 
       wx.request({
         url,
@@ -65,6 +110,13 @@ const netWork = {
       method: 'GET'
     })
   },
+  fetch_wait(url, params){
+    netWork.request({
+      url,
+      loading: true,
+      ...params,
+    })
+  },
   post() {
 
   },
@@ -84,5 +136,6 @@ const netWork = {
     return str.slice(0, -1)
   }
 }
+netWork.checkAuthor = checkAuthor
 module.exports = netWork
 
