@@ -1,9 +1,0 @@
-<!--head.wxml-->
-<template name="head">
-  <view class="header">
-    <view bindtap="backTap" class="hd-l">
-      <image src="../../image/back.png" class="back"/>
-    </view>
-    <text class="hd-title">{{title}}</text>
-  </view>
-</template>

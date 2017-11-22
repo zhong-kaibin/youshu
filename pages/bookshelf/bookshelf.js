@@ -126,13 +126,6 @@ Page({
     })
 
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.getJSON()
-    showCheckbox: (options.showCheckbox == "true" ? true : false)
-  },
 
   // 书籍管理按钮
   bookEdit: function () {
@@ -154,7 +147,7 @@ Page({
   onShow:function(){
     this.getJSON(()=>{
       this.setData({
-        manage: false
+        manage: false,
       })
     }, true)
   },

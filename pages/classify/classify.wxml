@@ -1,7 +1,4 @@
 <!--classify.wxml-->
-<!-- <import src="../common/head.wxml" />
-<template is="head" data="{{title: '分类'}}" /> -->
-
 <view class="page-list line-top">
   <view wx:if="{{superItem.subCategory.length !== 0}}" wx:for="{{list}}" wx:for-item="superItem" wx:key="{{superItem.key}}">
     <view class="list-hd">
@@ -11,11 +8,11 @@
       <block>
         <view  bindtap='naviToBookList' data-title="{{item.cate_name}}" data-cate_id="{{item.cate_id}}"
           class="list-item girl {{color[superItem.key]}}" wx:key="{{item.cate_id}}" wx:for="{{superItem.subCategory}}">
-            <image wx:if="{{item.img_url}}" class="item-img"  src="{{item.img_url}}"></image>
-            <view class="item-text">
+            <image wx:if="{{item.icon}}" class="item-img" mode='widthFix'  src="{{item.icon}}"></image>
+            <!-- <view class="item-text">
               <text class="item-name">{{item.cate_name}}</text>
-              <!-- <text class="item-detail">{{item.cate_id}}</text> -->
-            </view>
+               <text class="item-detail">{{item.cate_id}}</text> 
+            </view> -->
         </view>
       </block>
     </view>

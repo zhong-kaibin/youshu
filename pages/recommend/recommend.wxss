@@ -32,6 +32,8 @@
   overflow: hidden;
   font-size: 30rpx
 }
+/* 新头部 */
+
 .tabon{
   width: 175rpx;  
   float: left;

@@ -2,64 +2,69 @@
 const unit = require('./utils/util.js')
 const config = require('/config.js')
 const { recordPayChapter } = require('./utils/chapter.js')
+import { fetchConfig} from './utils/getConfig.js'
+
 App({
   onLaunch: function (options) {
     console.log(options, 'optionsoptions')
-    const query = options.query
+    const query = this.query = options.query
     this.s = query.s || 'gza5'
     this.path = options.path
-
+    fetchConfig()
     //从模板里进来   ****recommend_from_template  推荐页  reader_from_template  阅读器****** D
-    if (query.collection){
+    if (query.collection) {
       unit.reportAnalytics(query.collection, {})
     }
     // 上报打开小程序
     unit.reportAnalytics('enter_applet', {
       channel: this.s,
-      path: options.path, 
+      path: options.path,
       book_id: query.book_id,
       collection: query.collection
     });
   },
 
-  onHide: function(){
+  onHide: function () {
     recordPayChapter()
   },
 
-//force 强制登陆
+  //流程控制:并行请求
+  requestOpen: false,
+  requestQueue: [],
+  //force 强制登陆
   getLoginKey: function (cb, force = false) {
     if (force) {
       this.login(cb)
 
-    }else if (this.login_key) {
+    } else if (this.login_key) {
       cb(this.login_key)
 
     } else {
+      this.requestQueue.push(cb)
       var self = this
+      if (!this.requestOpen) {
+        wx.checkSession({
+          success() {
+            var key = wx.getStorageSync('login_key')
+            if (key) {
+              self.login_key = key
+              cb(key)
 
-      wx.checkSession({
-        success() {
-          var key = wx.getStorageSync('login_key')
-          
-          if (key) {
-            self.login_key = key
-            cb(key)
-
-          } else {
-
+            } else {
+              self.login(cb)
+            }
+          },
+          fail() {
             self.login(cb)
           }
-        },
-        fail() {
-
-          self.login(cb)
-        }
-      })
+        })
+      }
     }
   },
 
   login: function (cb) {
     var self = this
+    this.requestOpen = true
     wx.login({
       success: function (res) {
         if (res.code) {
@@ -76,27 +81,30 @@ App({
                 ...user,
                 code: res.code
               },
-              success: function (res) {          
-                if(res.data.code == 0){
+              success: function (res) {
+                if (res.data.code == 0) {
                   res = res.data.data
                   console.log(res, 'getOAuthSuccess')
                   self.user_info = res.user_info
+                  self.login_key = res.login_key
                   wx.setStorageSync('login_key', res.login_key)
                   wx.setStorageSync('user_info', res.user_info)
 
-                  self.login_key = res.login_key
-                  cb(res.login_key)  
-                  if (res.is_register == 1){
-                    unit.reportAnalytics('new_user_login',{
-                        path: self.path,
-                        channel:self.s
-                      })
-                  } 
-                }else{
+                  self.requestOpen = false
+                  self.requestQueue.forEach(cb => cb(res.login_key))
+                  self.requestQueue = []
+
+                  if (res.is_register == 1) {
+                    unit.reportAnalytics('new_user_login', {
+                      path: self.path,
+                      channel: self.s
+                    })
+                  }
+                } else {
                   wx.showToast({
                     title: res.data.msg || '',
                   })
-                }       
+                }
               },
               fail: function (err) {
                 console.log('oauth_login', err)
@@ -110,8 +118,11 @@ App({
         }
       }
     });
+
+
+
   },
-  
+
   //获取用户全部信息包括加密信息
   getAllUserInfo: function (callback) {
     var self = this
@@ -121,14 +132,14 @@ App({
         if (res.userInfo.gender == 0) res.userInfo.gender = 1
         callback(res)
       },
-      fail: function(){
+      fail: function () {
         self.showAutoModel()
       }
     })
   },
 
   //提示授权
-  showAutoModel:function(){
+  showAutoModel: function () {
     var self = this
     unit.hideLoading()
     wx.showModal({
@@ -139,17 +150,14 @@ App({
         if (res.confirm) {
           wx.openSetting({
             success: function success(res) {
-              //我去，默认成功后调用获取数据？？
+              //授权成功手动调用当前页onload
               var page = getCurrentPages()[0]
-              if (page.getJSON){
-                unit.showLoading({
-                  title: '正在加载',
-                })
-                page.getJSON()
-              } 
+              self.requestOpen = false,
+              self.requestQueue = []
+              page.onLoad(self.query)
             }
           });
-        }else{
+        } else {
           self.showAutoModel()
         }
       }

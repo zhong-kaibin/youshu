@@ -5,7 +5,7 @@ var formId = require('../../utils/formId.js')
 
 function showBindPop() {
   var user_info = unit.getUserInfo()
-  if (wx.getStorageSync('newUser') || user_info.phone.trim() != ''){
+  if (wx.getStorageSync('newUser') || parseInt(user_info.phone) ) {
     return
   }
   console.log(user_info, 'user_info pop')

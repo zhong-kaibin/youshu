@@ -3,13 +3,16 @@
 <!-- <import src="../common/moreInApp.wxml"/> -->
 
 <template is="pop" data="{{...bindPop}}" />
-<view class="r-header">
+ <!-- <view class="r-header">
   <image id="text" src="{{logo}}" class="hd-l" />
   <image bindtap="search" src="{{searchImg}}" class="hd-r" />
   <view class="hd-tab">
     <text class="{{sex ==1 ?'tabon':'tab'}}" bindtap="selected">男生</text>
     <text class="{{sex ==2 ?'tabon':'tab'}}" bindtap="selected1">女生</text>
   </view>
+</view>  -->
+<view>
+    <view></view>
 </view>
 
 <swiper current="{{current}}" circular="true" indicator-dots="true" autoplay="true" interval="3000" duration="500">

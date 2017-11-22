@@ -15,7 +15,7 @@ module.exports = {
         setTimeout(function(){
           unit.post({
             url: '/activity/sign_in',
-            success: res => {      
+            success: res => {     
               if (res.data.code == 0) {
                 pop.toastHappy(`今天送${res.data.bonus}阅币`, 4000)              
               }

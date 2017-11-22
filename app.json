@@ -5,7 +5,6 @@
     "pages/reader/reader",
     "pages/readerComic/reader",
     "pages/search/search",
-    "pages/buy/buy",
     "pages/bookDetail/bookDetail",
     "pages/recharge/recharge",
     "pages/rank/rank",
@@ -21,8 +20,7 @@
     "pages/personal/page/about/about",
     "activity/mind/mind",
     "activity/mind/test",
-    "activity/mind/result",
-    "pages/test/test"
+    "activity/mind/result"
   ],
   "window": {
     "backgroundTextStyle": "light",

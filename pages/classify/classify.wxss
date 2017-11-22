@@ -10,7 +10,7 @@
   font-size: 0.9rem;
   font-weight: bold; 
   color: #333333;
-  margin-bottom: 60rpx;
+  margin-bottom: 30rpx;
 }
 .item-title::before{
   position: relative;
@@ -61,7 +61,7 @@
 .list-item{
   line-height: 1;
   position: relative;
-  height: 160rpx;
+  /* height: 160rpx; */
   width: 48.9%;
   box-sizing:border-box;
   -moz-box-sizing:border-box; /* Firefox */
@@ -69,12 +69,9 @@
   margin-bottom: 20rpx;
 }
 .item-img{
-  position: absolute;
-  top: 24rpx;
-  right: 30rpx;
-  width: 80rpx;
-  height: 100rpx;
+  height: 19.424vw;
   border: 1rpx solid #f5f5f5;
+  width: 100%
 }
 .item-name{
   display: block;

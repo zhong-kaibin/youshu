@@ -1,6 +1,4 @@
 <!--pages/bookDetail/bookDetail.wxml-->
-<!-- <import src="../common/head.wxml" />
-<template is="head" data="{{title: dateil.bookName }}"/> -->
 <import src="../common/pop.wxml"/>
 
 <template is="pop" data="{{...bindPop}}"/>

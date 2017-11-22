@@ -1,7 +1,4 @@
 <!--bookshelf.wxml-->
-<!-- <import src="../common/head.wxml" /> -->
-<!-- <template is="head" data="{{title: '书架'}}"/> -->
-
 <view wx-if="{{list.length !== 0}}" bindtap="bookEdit" class="edit">{{manage ? '完成' : '管理' }}</view>
 
 <view class="page-list">

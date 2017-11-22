@@ -95,12 +95,17 @@ Page({
   },
 
   clearStorge: function () {
+    //记录无需清除的信息
+    var login_key = wx.getStorageSync('login_key')
+    var user_info = wx.getStorageSync('user_info')
     try {
       wx.clearStorageSync()
       wx.showToast({
         title: '清除成功',
       })
       this.getStorgeSize()
+      wx.setStorageSync('login_key', login_key)
+      wx.setStorageSync('user_info', user_info)
     } catch (e) {
 
     }

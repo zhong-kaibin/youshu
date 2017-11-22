@@ -12,18 +12,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    console.log(111)
   },
  //清楚缓存
   clearStorge: function () {
-    try {
-      wx.clearStorageSync()
-      wx.showToast({
-        title: '清除成功',
-      })
-      this.getStorgeSize()
-    } catch (e) {
-    }
+
   },
 
   /**

@@ -2,13 +2,28 @@
 var unit = require('../../utils/util.js')
 var pop = require('../common/pop.js')
 var prompt = require('../../utils/prompt.js')
+var network = require('../../utils/network.js')
 
 var app = getApp()
 Page({
   ...pop,
-  /**
-   * 页面的初始数据
-   */
+  onLoad: function (options) {
+
+    var code = wx.getStorageSync('code')
+    unit.showLoading({
+      title: '正在加载',
+    })
+    console.log('--------------')
+    getApp().getLoginKey(() => {
+      //展示 bind pop bug: 因为要判断登陆信息存在是否绑定，所以再一个接口请求完再调用
+      this.setData({
+        sex: unit.getUserInfo().sex || 1
+      })
+      this.showBindPop()
+      this.getJSON()
+    })
+    
+  },
   data: {
     logo: '../../image/hd-logo.png',
     searchImg: '../../image/search.png', 
@@ -98,30 +113,6 @@ Page({
       url: url
     })
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-    var code = wx.getStorageSync('code')
-    unit.showLoading({
-      title: '正在加载',
-    })
-    console.log('--------------')
-    getApp().getLoginKey(()=>{
-      //展示 bind pop bug: 因为要判断登陆信息存在是否绑定，所以再一个接口请求完再调用
-      this.setData({
-        sex: unit.getUserInfo().sex || 1
-      })
-      this.showBindPop()
-      this.getJSON()
-    })
-    // unit.get('/user/user_info', res => {
-      
-    // })
-  },
-
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

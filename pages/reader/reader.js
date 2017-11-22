@@ -114,6 +114,7 @@ Page({
   },
 
   getJSON: function (cb) {
+
     unit.showLoading({
       title: '正在加载中~',
     })
@@ -252,7 +253,7 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 0) {
-          //修改稿购买信息
+          //修改购买信息
           modifyPayChapter(book_id, index)
           self.getJSON()
         } 
@@ -288,7 +289,6 @@ Page({
    */
   onLoad: function (options) {
     var self = this;
-    
     //设置背景颜色
     var backColor = wx.getStorageSync('backColor')
     var { book_id, index, chapter_id } = options
@@ -303,35 +303,34 @@ Page({
 
     //获取后才记录，防止二次登陆
     this.getJSON(function(){
-
-      //展示 bind pop
+      //展示 bind pop //需在登陆后
       self.showBindPop()
-
-      //记录阅读过书籍
-      setReadedBook(book_id, info => {
-        self.data.book_name = info.book_name
-        console.log(info,'hadReaded')
-        wx.setNavigationBarTitle({
-          title: info.book_name
-        })
-        //获取每天奖励
-        fn.fetchAwardEveryday()
-      })
+      // 是否展示底部绑定banner//需在登陆后
+      var user_info = unit.getUserInfo()
+      if (!parseInt(user_info.phone)) {
+        self.setData({ bindBannerShow: true })
+      }
+      
     })
+    
+    //获取每天奖励 //需在登陆后
+    fn.fetchAwardEveryday()
 
-    // 是否展示底部绑定banner
-    var user_info = unit.getUserInfo()
-    if (user_info.phone.trim() === ''){
-      this.setData({ bindBannerShow: true })
-    }
-
+    //记录阅读过书籍
+    setReadedBook(book_id, info => {
+      self.data.book_name = info.book_name
+      console.log(info, 'hadReaded')
+      wx.setNavigationBarTitle({
+        title: info.book_name
+      })  
+    })
+   
     // 保持屏幕常亮
     if (wx.setKeepScreenOn) {
       wx.setKeepScreenOn({
         keepScreenOn: true
       })
     }
-
     //设置亮度为机器默认亮度
     if (wx.getScreenBrightness) {
       wx.getScreenBrightness({
@@ -342,7 +341,6 @@ Page({
         }
       })
     }
-
   },
   //亮度調節
   ligthChange: function (e) {

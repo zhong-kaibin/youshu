@@ -1,7 +1,7 @@
 // pages/recharge/recharge.js
 var unit = require('../../utils/util.js')
 var pop = require('../../utils/prompt.js')
-var recharge = require('../../utils/recharge.js')
+var recharge = require('../../utils/getConfig.js')
 Page({
 
   /**
