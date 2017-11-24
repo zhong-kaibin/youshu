@@ -1,7 +1,8 @@
 <!--pages/reader/reader.wxml-->
 <import src="../common/pop.wxml" />
 <template is="pop" data="{{...bindPop}}" />
-
+<import src="../common/authorTip.wxml" />
+<template is="authorTip" data="{{...authorTip}}"/>
 <view>
   <!--  设置头部  -->
   <view wx-if="{{setting}}" class='reader-hd'>

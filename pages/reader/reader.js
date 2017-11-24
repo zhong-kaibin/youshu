@@ -1,7 +1,8 @@
 // pages/reader/reader.js
 var unit = require('../../utils/util.js')
 var pop = require('../common/pop.js')
-
+var authorTip = require('../common/authorTip.js')
+var network = require('../../utils/network.js')
 var fn = require('../../utils/fn.js')
 
 var { getAllChapter, modifyPayChapter } = require('../../utils/chapter.js')
@@ -10,8 +11,10 @@ var { recordReading } = require('../../utils/chapter.js')
 var { getBalance } = require('../../utils/balance.js')
 import { getAutoBuyList } from '../../utils/balance.js'
 
+const App = getApp()
 Page({
   ...pop,
+  ...authorTip,
   /**
    * 页面的初始数据
    */
@@ -114,7 +117,7 @@ Page({
   },
 
   getJSON: function (cb) {
-
+   
     unit.showLoading({
       title: '正在加载中~',
     })
@@ -146,9 +149,7 @@ Page({
 
       //pay_type：1 已经购买，获取内容
       if (pay_type === 1) {
-        self.fetchContent()
-
-        if (cb) cb()
+        self.fetchContent(cb)
       } else {
         //判断是否在自动购买列表
         getAutoBuyList(list => {
@@ -192,7 +193,7 @@ Page({
 
   },
 
-  fetchContent: function () {
+  fetchContent: function (cb) {
     var self = this
     var { book_id, volume_id, chapter_id } = this.data
     unit.get(`/book/get_content?book_id=${book_id}&volume_id=${volume_id}&chapter_id=${chapter_id}`, function (res) {
@@ -207,6 +208,7 @@ Page({
         content: content,
         pay_type: 1
       })
+      if (cb) cb()
       unit.hideLoading()
       wx.stopPullDownRefresh()
 
@@ -288,6 +290,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    App.query = options
     var self = this;
     //设置背景颜色
     var backColor = wx.getStorageSync('backColor')
@@ -300,14 +303,14 @@ Page({
     }
     if (backColor) parma.backColor = backColor
     this.setData(parma)
-
+    this.setBarColor(backColor)
     //获取后才记录，防止二次登陆
     this.getJSON(function () {
       //展示 bind pop //需在登陆后
       self.showBindPop()
       //未搜权不用处理 手机绑定// 是否展示底部绑定banner//需在登陆后
       var user_info = unit.getUserInfo()
-      netWork.checkAuthor()
+      network.checkAuthor()
         .then(isAuthor => {
           if (isAuthor) {
             if (!parseInt(user_info.phone)) {
@@ -383,12 +386,22 @@ Page({
   },
   //背景颜色
   backColorChange: function (e) {
+    var bcolor = e.currentTarget.dataset.color
     this.setData({
-      backColor: e.currentTarget.dataset.color
+      backColor: bcolor
     })
+    this.setBarColor(bcolor)
     wx.setStorageSync('backColor', e.currentTarget.dataset.color)
   },
-
+  //导航颜色
+  setBarColor(color){
+    if (wx.setNavigationBarColor){
+      wx.setNavigationBarColor({
+        backgroundColor: color,
+        frontColor: color == "#191919" ? "#ffffff" : "#000000"
+      })
+    } 
+  },
   tapShowSetting: function () {
     this.setData({
       foot: !this.data.foot,

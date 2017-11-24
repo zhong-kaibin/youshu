@@ -219,8 +219,53 @@ page .btn-none{
 page .btn-none::after{
   content: none
 }
-
+/* btn清除样式 */
+.btn-clear{
+  background-color: transparent;
+  border-radius: 0;
+  margin: 0;
+  padding: 0
+}
+.btn-clear::after{
+  content: none
+}
 /*  底部提示绑定banner */
 .bind-banner{
   width: 100%;
+}
+
+/* authorTip */
+.author-tit{
+  text-align: center;
+  font-size: 32rpx;
+  padding-top: 36rpx;
+  color: #333;
+  font-weight: bold;
+}
+.author-warp{
+  width: 80vw;
+  margin: 30% auto;
+  background-color: #fff;
+  border-radius: 10rpx;
+}
+.author-msg{
+  padding: 40rpx;
+  font-size: 26rpx;
+  text-align: center;
+  color: #9b9b9b;
+  line-height: 1.6;
+}
+.author-tip{
+  display: flex;
+  border-top: 1px solid #e0e0e0;
+  
+}
+.author-tip>button{
+  flex: 1;
+  color: #50b5ff;
+  font-size: 30rpx
+}
+.author-tip .author-reject{
+  color: #333;
+  border-right: 1px solid #e0e0e0
 }

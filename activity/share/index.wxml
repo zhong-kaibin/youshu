@@ -1,0 +1,20 @@
+<!--activity/share/index.wxml-->
+<view class='share'>
+  <view class='session top'>
+    <view class='top-box'>
+      <view class='top-tit'>邀请好友</view>
+      <view class='top-user'><text class='top-num'>3</text>人</view>
+    </view>
+    <view class='top-box'>
+      <view class='top-tit'>累计获得</view>
+      <view class='top-user'><text class='top-num'>3</text>阅币</view>
+    </view>
+    <view class='top-look'>查看奖励</view>
+  </view>
+  <view class='session'>
+    <view class='step'>
+      <image></image>
+      <view></view>
+    </view>
+  </view>
+</view>

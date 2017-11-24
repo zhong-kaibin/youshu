@@ -21,7 +21,9 @@
     "activity/mind/mind",
     "activity/mind/test",
     "activity/mind/result",
-    "pages/website/website"
+    "pages/website/website",
+    "activity/share/index",
+    "activity/share/award"
   ],
   "window": {
     "backgroundTextStyle": "light",

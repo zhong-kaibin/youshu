@@ -2,7 +2,7 @@
 <view class="page-list">
 <view wx:if="{{empty}}" class='empty-text' catchtap='naviToRecormend'>暂时没有记录，快去看看吧~</view>
   <checkbox-group bindchange="check">
-    <block wx:for="{{list}}" wx:key="{{item.book_id}}">
+    <block wx:for="{{list}}" wx:key="book_id">
       <navigator hover-class="none" url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
         <view class="item">
           <checkbox checked='{{item.checked}}' value='{{item.book_id}}' class="{{manage?'btn-checked-show':'btn-checked-hide'}}" />

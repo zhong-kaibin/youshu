@@ -1,7 +1,9 @@
 <!--pages/reader/reader.wxml-->
 <import src="../common/pop.wxml" />
-
+<import src="../common/authorTip.wxml" />
 <template is="pop" data="{{...bindPop}}" />
+<template is="authorTip" data="{{...authorTip}}"/>
+
 <view style='background:{{backColor}};min-height:100%'>
   <view style='background:{{backColor}}' wx-if="{{pay_type === 1}}" class='reader-hd'>
     <text style='font-size: {{fontSize * 0.85}}rpx;'>{{chapter_name}}</text>

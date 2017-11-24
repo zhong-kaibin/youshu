@@ -8,6 +8,10 @@ page{
   background: #ffffff;
   margin-bottom: 10rpx;
 }
+.login-tip{
+  font-size: 35rpx;
+  color: #73b4ee;
+}
 .userinfo-avatar{
   width: 120rpx;
   height: 120rpx;
@@ -65,12 +69,17 @@ page{
   right: 30rpx;
   top: 38rpx;
 }
+.item{
+  display: inline;
+  font-size: inherit;
+  color: inherit;
+}
 .item-right{
   float: right;
   font-size: .8rem;
   color: #aaa;
   margin-right: 30rpx
 }
-.moreInApp{
-
+.btn-clear{
+  text-align: left
 }

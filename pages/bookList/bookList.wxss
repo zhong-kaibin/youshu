@@ -8,16 +8,14 @@
   border-bottom:1rpx solid #e5e5e5;
   line-height: 1.5;
   font-size: 0.8rem;
-  position: relative;
-  padding-left: 190rpx;
   height: 214rpx;
+  display: flex;
 }
 .item-img{
-  position: absolute;
-  top: 24rpx;
-  left: 0;
   width: 160rpx;
   height: 214rpx;
+  flex-shrink: 0;
+  margin-right: 20rpx;
 }
 .item-name{
   display: block;
@@ -32,6 +30,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden; 
+  width: 510rpx;
 }
 .label-box{
   margin: 20rpx 0;  

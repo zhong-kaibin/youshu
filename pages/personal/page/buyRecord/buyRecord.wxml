@@ -4,7 +4,7 @@
 
 <view class="page-list">
   <view wx-if="{{empty}}" class='empty'>暂无记录</view>  
-  <block wx:for="{{list}}">
+  <block wx:key="created" wx:for="{{list}}">
     <view class="item">
       <view class="item-text">
         <text class="item-l">{{item.title}}</text>

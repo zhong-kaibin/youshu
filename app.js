@@ -2,7 +2,7 @@
 const unit = require('./utils/util.js')
 const config = require('/config.js')
 const { recordPayChapter } = require('./utils/chapter.js')
-import { fetchConfig} from './utils/appConfig.js'
+import { fetchConfig } from './utils/appConfig.js'
 
 App({
   onLaunch: function (options) {
@@ -22,7 +22,7 @@ App({
       collection: query.collection
     });
   },
-
+  
   onHide: function () {
     recordPayChapter()
   },
@@ -141,28 +141,34 @@ App({
   showAutoModel: function () {
     var self = this
     unit.hideLoading()
-    wx.showModal({
-      title: '用户未授权',
-      content: '如需正常使用口袋阅读王，请按确定并在授权管理中选中“用户信息”，仅是获取用户公开的信息。',
-      showCancel: true,
-      success: function (res) {
-        //修复流程控制bug
-        self.requestOpen = false,
-        self.requestQueue = []
-        if (res.confirm) {
-          wx.openSetting({
-            success: function success(res) {
-              //授权成功手动调用当前页onload
-              var pages = getCurrentPages()
-              pages[pages.length -1].onLoad(self.query)
-            }
-          });
-        } else {
-          wx.switchTab({
-            url: '/pages/recommend/recommend',
-          })
+    //修复流程控制bug
+    this.requestOpen = false,
+    this.requestQueue = []
+    var pages = getCurrentPages()
+    if (wx.canIUse('button.open-type.getUserInfo') && pages[pages.length - 1]._showAuthorTip) {
+      //_showAuthorTip是按钮的授权提示页的函数，common/authorTip.js里定义的
+      pages[pages.length - 1]._showAuthorTip()
+    } else {
+      wx.showModal({
+        title: '用户未授权',
+        content: '如需正常使用口袋阅读王，请按确定并在授权管理中选中“用户信息”，仅是获取用户公开的信息。',
+        showCancel: true,
+        success: function (res) {
+
+          if (res.confirm) {
+            wx.openSetting({
+              success: function success(res) {
+                //授权成功手动调用当前页onload
+                pages[pages.length - 1].onLoad(self.query)
+              }
+            });
+          } else {
+            wx.switchTab({
+              url: '/pages/recommend/recommend',
+            })
+          }
         }
-      }
-    })
+      })
+    }
   },
 })

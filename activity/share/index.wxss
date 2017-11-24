@@ -1,0 +1,47 @@
+/* activity/share/index.wxss */
+page{
+  background-color: #fbedcb;
+}
+.share{
+  padding-top: .24rpx;
+}
+.session{
+  margin: 0 20rpx 20rpx;
+  background-color: #fff;
+  border: 4rpx solid #f7dca2;
+  border-radius: 14rpx;
+  position: relative;
+  overflow: hidden;
+}
+.top{
+  height: 233rpx;
+}
+.top-tit{
+  color: #333;
+  font-size: 30rpx;
+}
+.top-box{
+  width: 50%;
+  float: left;
+  text-align: center;
+  margin-top: 22rpx;
+  line-height: 58rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+.top-user{
+  line-height: 80rpx;
+  font-size: 28rpx;
+  color: #cd4b4b;
+}
+.top-num{
+  font-size: 64rpx;
+  font-weight: bold;
+}
+.top-look{
+  float: right;
+  margin-right: 30rpx;
+  font-size: 28rpx;
+  color: #cd4b4b;
+  text-decoration: underline;
+}

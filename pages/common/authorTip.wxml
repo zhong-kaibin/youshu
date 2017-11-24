@@ -1,0 +1,12 @@
+<template name="authorTip">
+  <view wx:if="{{show}}" class='pop-warp'>
+    <view class='author-warp'>
+      <view class='author-tit'>温馨提示</view>
+      <view class='author-msg'>{{tip}}</view>
+      <view class='author-tip'>
+        <button class='btn-clear author-reject' bindtap='_naviToHome'>狠心拒绝</button>      
+        <button class='btn-clear' open-type="getUserInfo" bindgetuserinfo='_bindgetuserinfo'>马上授权</button>
+      </view>
+    </view>
+  </view>
+</template>

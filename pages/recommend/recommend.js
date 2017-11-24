@@ -3,32 +3,37 @@ var unit = require('../../utils/util.js')
 var pop = require('../common/pop.js')
 var prompt = require('../../utils/prompt.js')
 var network = require('../../utils/network.js')
-var {fetchConfig} = require('../../utils/appConfig.js')
+var { fetchConfig } = require('../../utils/appConfig.js')
 var app = getApp()
 Page({
   ...pop,
+  timestamp: null,
   onLoad: function (options) {
-    fetchConfig(config => {
-      this.setData({
-        channel_types: config.channel_types,
-        channel_code: config.channel_types[0].channel_code
-      })
-      //展示 bind pop bug: 因为要判断登陆信息存在是否绑定，所以在一个接口请求完再调用
-      this.showBindPop()
-      this.getJSON()
-    })
   },
-
+  onShow: function () {
+    fetchConfig(config => {
+      if (this.timestamp != config.timestamp) {
+        this.timestamp = config.timestamp
+        this.setData({
+          channel_types: config.channel_types,
+          channel_code: config.channel_types[0].channel_code
+        })
+        //展示 bind pop bug: 因为要判断登陆信息存在是否绑定，所以在一个接口请求完再调用
+        this.showBindPop()
+        this.getJSON()
+      }
+    }, true)
+  },
   getJSON: function (cb) {
     var that = this
     network.fetch('/book/v2/index', {
       needCheckAuthor: true,
-      loading:true,
-      data:{
+      loading: true,
+      data: {
         channel_code: this.data.channel_code
       },
       success: function (data) {
-        if (cb)cb()
+        if (cb) cb()
         var banners = data.banner_list.filter(function (val) {
           return val
         })
@@ -49,13 +54,13 @@ Page({
 
   data: {
     logo: '../../image/hd-logo.png',
-    searchImg: '../../image/search.png', 
+    searchImg: '../../image/search.png',
     sex: 1,
-    banner_list: [],    
-    top_list:[],
-    current:0,//修复切换banner的bug
-    book_shelf_data:[],
-    channel_types:[]
+    banner_list: [],
+    top_list: [],
+    current: 0,//修复切换banner的bug
+    book_shelf_data: [],
+    channel_types: []
   },
   // selected: function (e) {
   //   this.setData({
@@ -69,7 +74,7 @@ Page({
   //   })
   //   this.getJSON()
   // },
-  tapChannel:function(e){
+  tapChannel: function (e) {
     var { channel_code } = e.currentTarget.dataset
     this.setData({
       channel_code
@@ -79,55 +84,66 @@ Page({
   /**
    * 跳转搜索页
    */
-  search: function() {
+  search: function () {
     wx.navigateTo({
       url: '../search/search'
     })
   },
 
-  tapBanner: function(e){
-    var { index, wxurl} = e.currentTarget.dataset
-    if (wxurl){
-      return unit.navigate({
+  tapBanner: function (e) {
+    var { index, wxurl, applet_activity } = e.currentTarget.dataset
+    var book_id = this.data.banner_list[index].params.book_id
+    if (wxurl) {
+      unit.navigate({
         url: wxurl,
       })
+    } else if (applet_activity) {
+      unit.navigate({
+        url: applet_activity
+      })
+    } else if (book_id) {
+      wx.navigateTo({
+        url: '/pages/bookDetail/bookDetail?book_id=' + this.data.banner_list[index].params.book_id,
+      })
     }
-    var book_id = this.data.banner_list[index].params.book_id
-    if (!book_id)return
-    wx.navigateTo({
-      url: '/pages/bookDetail/bookDetail?book_id=' + this.data.banner_list[index].params.book_id,
-    })
+  },
+
+  //topList导航
+  naviTopList: function (e) {
+    var { url, applet_activity, title } = e.currentTarget.dataset
+    if (applet_activity) {
+      unit.navigate({
+        url: applet_activity
+      })
+    } else if (url) {
+      wx.navigateTo({
+        url: `/pages/website/website?url=${url}&title=${title}`,
+      })
+    }
   },
 
   /**
    * 跳转列表
    */
   goList: function (e) {
-    var {params,title} = e.target.dataset
-    wx.navigateTo({
-      url: `/pages/bookList/bookList?params=${params}&sex=${this.data.sex}&title=${title}`
-    })
-  },
-
-  //topList导航
-  naviTopList: function(e){
-    var { url, activity,title } = e.currentTarget.dataset
-    if (activity){
+    var { params, title, applet_activity } = e.target.dataset
+    if (applet_activity) {
       unit.navigate({
-        url: activity
+        url: applet_activity.trim()
       })
-    } else if (url){
-       wx.navigateTo({
-         url: `/pages/website/website?url=${url}&title=${title}`,
-       })
+    } else {
+      wx.navigateTo({
+        url: `/pages/bookList/bookList?params=${params}&sex=${this.data.sex}&title=${title}`
+      })
     }
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getJSON(function(){
+    this.getJSON(function () {
       wx.stopPullDownRefresh()
     })
   },

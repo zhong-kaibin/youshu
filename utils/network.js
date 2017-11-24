@@ -11,6 +11,7 @@ function checkAuthor(){
       resolve(isAuthor)
     }else{
       if (wx.getSetting) {
+        // wx.getUserInfo()
         wx.getSetting({
           success(res) {
             if (!res.authSetting['scope.userInfo']) {

@@ -14,22 +14,22 @@
 <!-- top  -->
 <view class='top'>
   <scroll-view scroll-x="true" class="channel-list">
-    <view class='channel-item {{channel_code == item.channel_code && "active"}}' bindtap='tapChannel' wx:key="{{item.channel_code}}" data-channel_code="{{item.channel_code}}" wx:for="{{channel_types}}">{{item.channel_name}}</view>
+    <view class='channel-item {{channel_code == item.channel_code && "active"}}' bindtap='tapChannel' wx:key="channel_code" data-channel_code="{{item.channel_code}}" wx:for="{{channel_types}}">{{item.channel_name}}</view>
   </scroll-view>
-  <image bindtap="search" src="{{searchImg}}" class="top-r" />
+  <image lazy-load="true"	 bindtap="search" src="{{searchImg}}" class="top-r" />
 </view>
 
 <!-- banner  -->
 <swiper wx:if="{{banner_list.length != 0}}" current="{{current}}" circular="true" indicator-dots="true" autoplay="true" interval="3000" duration="500">
-  <swiper-item wx:key='{{item.banner_url}}' wx:for="{{banner_list}}">
-    <image data-wxurl='{{item.wxurl}}' data-index="{{index}}" bindtap='tapBanner' src="{{item.banner_url}}" mode="scaleToFill" class="slide-image" />
+  <swiper-item wx:key='banner_url' wx:for="{{banner_list}}">
+    <image data-applet_activity="{{item.applet_activity}}" lazy-load="true" data-wxurl='{{item.url}}' data-index="{{index}}" bindtap='tapBanner' src="{{item.banner_url}}" mode="scaleToFill" class="slide-image" />
   </swiper-item>
 </swiper>
 
 <!-- topList  -->
-<view wx:if="{{top_list.length != 0}}" class='top-list'>
+<view wx:if="{{top_list.length > 3}}" class='top-list'>
   <view class="flex-wrp" style="flex-direction:row;">
-    <view  data-title="{{item.title}}"  data-activity="{{item.applet_activity}}" wx:key="{{inex}}" wx:for="{{top_list}}" class="flex-item" bindtap='naviTopList' data-url='{{item.url}}'>
+    <view data-title="{{item.title}}" data-applet_activity="{{item.applet_activity}}" wx:key="{{item.id.toString()}}" wx:for="{{top_list}}" class="flex-item" bindtap='naviTopList' data-url='{{item.url}}'>
       <image src="{{item.icon_url}}" class="flex-icon" />
       <text class="flex-text">{{item.title}}</text>
     </view>
@@ -37,20 +37,32 @@
 </view>
 <!-- 专题 -->
 <view class="page-section">
-  <view wx:for="{{book_shelf_data}}" wx:key="{{index}}" wx:for-item="list">
+  <view wx:for="{{book_shelf_data}}" wx:key="name" wx:for-item="list">
     <view class="classify-hd">
       <text class="classify-title">{{list.title}}</text>
-      <view class="classify-more" bindtap='goList' data-params='{{list.name}}' data-title='{{list.title}}'>查看更多
+      <view class="classify-more" data-applet_activity="{{list.applet_activity}}"  bindtap='goList'  data-params='{{list.name}}' data-title='{{list.title}}'>{{list.more}}
         <image mode='aspectFill' src='/image/home-right.png' class='icon-more'></image>
       </view>
     </view>
     <view class="classify-body">
       <view class="list">
-        <block wx:key="{{item.book_id}}" wx:for="{{list.books}}">
-          <view class="list-item">
+        <block wx:key="book_id" wx:for="{{list.books}}">
+          <view wx:if="{{list.style == 1}}" class="list-item">
             <navigator url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
-              <image src="{{item.cover}}" mode="scaleToFill" class="item-img" />
+              <image lazy-load="true" src="{{item.cover}}" mode="scaleToFill" class="item-img" />
               <text class="item-text">{{item.book_name}}</text>
+            </navigator>
+          </view>
+          <view wx:if="{{list.style == 2}}">
+            <navigator class='list-item-across' url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
+              <image lazy-load="true" mode='aspectFill' src="{{item.cover}}" mode="scaleToFill" class="item-img-across" />
+              <view class='item-content-across'>
+                <view class="item-tit-across">{{item.book_name}}</view>
+                <view class='item-cont-across'>{{item.intro}}</view>
+                <view class='item-user-across'>
+                  <image class='item-user-img' mode="aspectFill" src='/image/default-header.png'></image> {{item.author_name}}</view>
+              </view>
+
             </navigator>
           </view>
         </block>

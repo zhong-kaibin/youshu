@@ -1,6 +1,7 @@
 // personal.js
 //获取应用实例
 var unit = require('../../utils/util.js')
+var network = require('../../utils/network.js')
 var appConfig = require('../../utils/appConfig.js')
 var app = getApp()
 Page({
@@ -9,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLogin: false,
     userInfo: {},
     showRecharge: false
   },
@@ -63,26 +65,40 @@ Page({
       url: 'page/automaticBuy/automaticBuy'
     })
   },
-  aboutUsTap: function(){
+  aboutUsTap: function () {
     wx.navigateTo({
       url: 'page/about/about',
     })
   },
 
-  settingTap: function(){
+  settingTap: function () {
     wx.navigateTo({
       url: 'page/setting/setting',
     })
   },
+  //绑定手机回调
+  bindgetuserinfo:function(){
+    this.getJSON()
+  },
   getJSON: function (cb) {
     var self = this
-    unit.get('/user/user_info', res => {
-      self.setData({
-        userInfo: res.data
+    network.checkAuthor()
+      .then(isAuthor => {
+        if (isAuthor) {
+          unit.get('/user/user_info', res => {
+            self.setData({
+              userInfo: res.data,
+              isLogin: true
+            })
+            if (cb) cb()
+          })
+        } else {
+          self.setData({
+            isLogin: false
+          })
+        }
       })
-      if (cb)cb()
-    })
-    appConfig.fetchConfig(function(config){
+    appConfig.fetchConfig(function (config) {
       if (config.applet_test != 1) {
         self.setData({
           showRecharge: true
@@ -124,11 +140,11 @@ Page({
     var self = this
     wx.getStorageInfo({
       success: function (res) {
-        
+
         //大于5M自动把章节列表清空
-        if(res.currentSize > 5000){
-          res.keys.forEach(function(val){
-            if (val.indexOf('chapter') !== -1){
+        if (res.currentSize > 5000) {
+          res.keys.forEach(function (val) {
+            if (val.indexOf('chapter') !== -1) {
               wx.removeStorage({
                 key: val
               })
@@ -159,7 +175,7 @@ Page({
       wx.stopPullDownRefresh()
     })
   },
-  onShow: function(){
+  onShow: function () {
     this.getJSON()
   },
   /**

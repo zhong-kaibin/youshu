@@ -4,7 +4,7 @@
 <view class="page-list">
   <view wx-if="{{list.length == 0}}" class='addbook'>暂未添加书籍，快去看看吧~</view>
   <checkbox-group bindchange="check">
-    <block wx:for="{{list}}" wx:key="{{item.book_id}}">
+    <block wx:for="{{list}}" wx:key="book_id">
       <navigator hover-class="none" url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}">
         <view class="item">
           <view catchtap='todo' class='btn-warp' class="{{manage?'btn-checked-show':'btn-checked-hide'}}">

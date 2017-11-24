@@ -70,13 +70,17 @@ Page({
       }
     })
 
+  },
+  onShow:function(){
+    var book_id = this.data.book_id
+    var self= this
     recoverReading(book_id, function (index) {
       self.setData({
         index: index
       })
     })
   },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */

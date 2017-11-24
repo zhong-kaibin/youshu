@@ -4,6 +4,7 @@ var reader = require('./functions .js')
 var mix = require('./mix.js')
 var pop = require('../common/pop.js')
 var fn = require('../../utils/fn.js')
+var authorTip = require('../common/authorTip.js')
 
 var { getAllChapter, modifyPayChapter } = require('../../utils/chapter.js')
 var { setReadedBook, getBookInfo } = require('../../utils/book.js')
@@ -11,9 +12,11 @@ var { recordReading } = require('../../utils/chapter.js')
 var { getBalance } = require('../../utils/balance.js')
 import { getAutoBuyList } from '../../utils/balance.js'
 
+const App = getApp()
 Page({
   ...mix,
   ...pop,
+  ...authorTip,
   /**
    * 页面的初始数据
    */
@@ -99,7 +102,6 @@ Page({
       })
     }
   },
-
 
   getJSON: function (index, cb) {
     var self = this
@@ -264,6 +266,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    App.query = options
     this.setData(options)
     this.setLoading()
     this.getJSON(options.index, data => {
