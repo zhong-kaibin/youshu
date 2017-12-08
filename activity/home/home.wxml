@@ -74,7 +74,7 @@
                                 <text class="story-passage">{{item.intro}}</text>
                             </view>
                         </navigator>
-                        <view class="story-item-r-share" id="{{item.book_id}}" bind:tap="quickShare">
+                        <view class="story-item-r-share" id="{{item.book_id}}" data-bookName="{{item.book_name}}" bind:tap="quickShare">
                             <image src="../../image/activity/quick-share.png"></image>
                         </view>
                     </view>

@@ -9,7 +9,8 @@ Page({
         storyIndex: 0,
         sex: 1,
         flagPopup: true,
-        inviter_id: ''
+        book_id: '',
+        book_name: ''
     },
     onLoad(option) {
         console.log('这是参数',option);
@@ -27,7 +28,7 @@ Page({
         this.getInvite()
     },
     getJSON(cb) {
-        network.testApi('/activity/invite/share_book_list', {
+        network.fetch('/activity/invite/share_book_list', {
             loading: true,
             needCheckAuthor: true,
             success: (res) => {
@@ -46,7 +47,7 @@ Page({
         })
     },
     getInvite(){
-        network.testApi('/user/oauth_login',{
+        network.fetch('/user/oauth_login',{
             loading: true,
             forceLogin: true,
             needCheckAuthor: true,
@@ -55,14 +56,14 @@ Page({
                 
             }
         })
-        // network.testApi('/activity/invite/info', {
-        //     loading: true,
-        //     needCheckAuthor: true,
-        //     success: (res) => {
-        //        console.log('49', res);
+        network.fetch('/activity/invite/info', {
+            loading: true,
+            needCheckAuthor: true,
+            success: (res) => {
+               console.log('49', res);
                
-        //     }
-        // })
+            }
+        })
     },
     tabToggle(event) {
         console.log('index', event, event.target.dataset.index);
@@ -71,12 +72,13 @@ Page({
         })
     },
     quickShare(event) {
-        console.log('book_id',event.currentTarget.id);
+        console.log('book_id',event, event.currentTarget.id);
         this.setData({
             flagPopup: false,
-            inviter_id: event.currentTarget.id
-        })
-        console.log('inviter_id',this.data.inviter_id);
+            book_id: event.currentTarget.id,
+            book_name: event.currentTarget.dataset.bookname
+        })        
+        console.log('book_name', this.data.book_name);
         
     },
     closePopup(){
@@ -110,8 +112,8 @@ Page({
      */
     onShareAppMessage: function () {
         return {
-            title: '分享小说赠阅币',
-            path: '/activity/home/home?inviter_id='+this.data.inviter_id
+            title: this.data.book_name,
+            path: `/pages/bookDetail/bookDetail?book_id=${this.data.book_id}`
         }
     }
 })
