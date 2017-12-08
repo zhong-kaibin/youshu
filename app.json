@@ -1,73 +1,75 @@
 {
-  "pages": [
-    "pages/recommend/recommend",
-    "pages/chapterList/chapterList",
-    "pages/reader/reader",
-    "pages/readerComic/reader",
-    "pages/search/search",
-    "pages/bookDetail/bookDetail",
-    "pages/recharge/recharge",
-    "pages/rank/rank",
-    "pages/personal/personal",
-    "pages/personal/page/buyRecord/buyRecord",
-    "pages/personal/page/rechargeRecord/rechargeRecord",
-    "pages/classify/classify",
-    "pages/bookshelf/bookshelf",
-    "pages/bookList/bookList",
-    "pages/personal/page/readed/readed",
-    "pages/personal/page/automaticBuy/automaticBuy",
-    "pages/personal/page/setting/setting",
-    "pages/personal/page/about/about",
-    "activity/mind/mind",
-    "activity/mind/test",
-    "activity/mind/result",
-    "pages/website/website",
-    "activity/share/index",
-    "activity/share/award"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#5db4fe",
-    "borderStyle": "black",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/recommend/recommend",
-        "iconPath": "image/footbar/01.png",
-        "selectedIconPath": "image/footbar/1.png",
-        "text": "精选"
-      },
-      {
-        "pagePath": "pages/bookshelf/bookshelf",
-        "iconPath": "image/footbar/02.png",
-        "selectedIconPath": "image/footbar/2.png",
-        "text": "书架"
-      },
-      {
-        "pagePath": "pages/classify/classify",
-        "iconPath": "image/footbar/03.png",
-        "selectedIconPath": "image/footbar/3.png",
-        "text": "分类"
-      },
-      {
-        "pagePath": "pages/personal/personal",
-        "iconPath": "image/footbar/04.png",
-        "selectedIconPath": "image/footbar/4.png",
-        "text": "我的"
-      }
-    ]
-  },
-  "networkTimeout": {
-    "request": 10000,
-    "connectSocket": 10000,
-    "uploadFile": 10000,
-    "downloadFile": 10000
-  },
-  "debug": true
+    "pages": [
+        "pages/recommend/recommend",
+        "activity/home/home",
+        "activity/gift/gift",        
+        "activity/mind/result",        
+        "activity/howToShare/howToShare",
+        "pages/chapterList/chapterList",
+        "pages/reader/reader",
+        "pages/readerComic/reader",
+        "pages/search/search",
+        "pages/bookDetail/bookDetail",
+        "pages/recharge/recharge",
+        "pages/rank/rank",
+        "pages/personal/personal",
+        "pages/personal/page/buyRecord/buyRecord",
+        "pages/personal/page/rechargeRecord/rechargeRecord",
+        "pages/classify/classify",
+        "pages/bookshelf/bookshelf",
+        "pages/bookList/bookList",
+        "pages/personal/page/readed/readed",
+        "pages/personal/page/automaticBuy/automaticBuy",
+        "pages/personal/page/setting/setting",
+        "pages/personal/page/about/about",
+        "activity/mind/mind",
+        "activity/mind/test",
+        "pages/website/website",
+        "activity/share/index",
+        "activity/share/award"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#7A7E83",
+        "selectedColor": "#5db4fe",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [{
+                "pagePath": "pages/recommend/recommend",
+                "iconPath": "image/footbar/01.png",
+                "selectedIconPath": "image/footbar/1.png",
+                "text": "精选"
+            },
+            {
+                "pagePath": "pages/bookshelf/bookshelf",
+                "iconPath": "image/footbar/02.png",
+                "selectedIconPath": "image/footbar/2.png",
+                "text": "书架"
+            },
+            {
+                "pagePath": "pages/classify/classify",
+                "iconPath": "image/footbar/03.png",
+                "selectedIconPath": "image/footbar/3.png",
+                "text": "分类"
+            },
+            {
+                "pagePath": "pages/personal/personal",
+                "iconPath": "image/footbar/04.png",
+                "selectedIconPath": "image/footbar/4.png",
+                "text": "我的"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "connectSocket": 10000,
+        "uploadFile": 10000,
+        "downloadFile": 10000
+    },
+    "debug": true
 }

@@ -1,0 +1,64 @@
+<view class="main">
+    <view class="main-top">
+            <view class="main-top-in main-top-l">
+                <text class="text1">邀请好友</text>
+                <text class="text2">
+                    <text>3</text>人</text>
+            </view>
+            <view class="main-top-in main-top-r">
+                <text class="text1">累积获得</text>
+                <text class="text2">
+                    <text>80</text>阅币</text>
+            </view>
+    </view>    
+    <view class="gift">
+        <view class="gift-bgi">
+            <text class="h2" style="background-image: url(../../image/activity/short-title.png);">神秘礼包</text>
+        </view>
+        <view class="red-envelopes">
+            <image src="../../image/activity/gift.png"></image>
+        </view>
+        <view class="follow-up deep-gray">
+            <text>
+                后续将开放累计邀请好友奖励
+                更多神秘大奖敬请期待
+            </text>
+        </view>
+    </view>    
+
+    <!-- 邀请我的好友 -->
+    <view class="invite-list">
+        <view class="invite-title">
+            <text class="h2" style="background-image: url(../../image/activity/long-title.png);">邀请我的好友</text>
+        </view>
+        <view class="invite-ul">
+            <view class="invite-ul-li">
+                <div class="invite-ul-li-in invite-ul-li-left">
+                    <image src="../../image/activity/test/test_2.png"></image>
+                    <text>xin君儿</text>
+                </div>
+                <div class="invite-ul-li-in invite-ul-li-right">
+                    <text>11月11日    10:26</text>
+                </div>
+            </view>
+            <view class="invite-ul-li">
+                <div class="invite-ul-li-in invite-ul-li-left">
+                    <image src="../../image/activity/test/test_2.png"></image>
+                    <text>xin君儿</text>
+                </div>
+                <div class="invite-ul-li-in invite-ul-li-right">
+                    <text>11月11日    10:26</text>
+                </div>
+            </view>
+            <view class="invite-ul-li">
+                <div class="invite-ul-li-in invite-ul-li-left">
+                    <image src="../../image/activity/test/test_2.png"></image>
+                    <text>xin君儿</text>
+                </div>
+                <div class="invite-ul-li-in invite-ul-li-right">
+                    <text>11月11日    10:26</text>
+                </div>
+            </view>
+        </view>
+    </view>
+</view>

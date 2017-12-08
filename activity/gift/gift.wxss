@@ -1,0 +1,149 @@
+page {
+    background-color: #fbedcb;
+    padding: 20rpx;
+    box-sizing: border-box
+}
+
+.deep-gray {
+    color: #333333;
+}
+
+.main-top {
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    border: 4rpx solid #f7dca2;
+    border-radius: 16rpx;
+}
+
+.main>view:not(:last-child) {
+    margin-bottom: 20rpx;
+}
+
+.main-top .main-top-in {
+    flex: 1;
+    text-align: center;
+    color: #333333;
+    font-size: 30rpx;
+    padding-bottom: 20rpx;
+}
+
+.main-top-in .text1 {
+    padding-top: 40rpx;
+    padding-bottom: 30rpx;
+    display: block;
+}
+
+.main-top-in .text2 {
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #cd4b4b;
+}
+
+.main-top-in .text2 text {
+    font-size: 64rpx;
+}
+
+
+
+/* 神秘礼包 */
+.gift {
+    background-color: #fff;
+    border: 4rpx solid #f7dca2;
+    border-radius: 16rpx;
+    padding-top: 26rpx;
+    padding-bottom: 40rpx;
+}
+.gift-bgi {
+    display: flex;
+    justify-content: center;
+}
+
+.gift .gift-bgi .h2 {
+    display: block;
+    width: 250rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-weight: 600;
+    color: #333333;
+    font-size: 40rpx;
+}
+.red-envelopes {
+    height: 359rpx;
+    text-align: center;
+    margin-top: -20rpx
+}
+.red-envelopes image{
+    width: 363rpx;
+    height: 359rpx;
+    display: inline-block;
+}
+.follow-up {
+    text-align: center;
+    font-size: 28rpx;
+    line-height: 44rpx;
+     margin-top: -80rpx 
+}
+
+/* 邀请我的好友 */
+.invite-list {
+    background-color: #fff;
+    border: 4rpx solid #f7dca2;
+    border-radius: 16rpx;
+    padding-top: 26rpx;
+    padding-bottom: 40rpx;
+}
+.invite-title {
+    display: flex;
+    justify-content: center;
+}
+
+.invite-title .h2 {
+    display: block;
+    width: 309rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-weight: 600;
+    color: #333333;
+    font-size: 40rpx;
+}
+
+.invite-ul {
+    margin-top: 38rpx;
+}
+.invite-ul-li {
+    display: flex;
+    height: 70rpx;
+    line-height: 70rpx;
+    padding: 0 32rpx;
+    margin-bottom: 16rpx;
+}
+.invite-ul-li .invite-ul-li-in {
+    flex: 1;
+    font-size: 26rpx;
+}
+.invite-ul-li .invite-ul-li-left {
+    color: #333333;
+}
+.invite-ul-li-left text {
+   display: inline-block;
+   padding-left: 20rpx;
+   vertical-align: top;
+}
+.invite-ul-li .invite-ul-li-left image{
+    width: 70rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.invite-ul-li .invite-ul-li-right {
+    text-align: right;
+    color: #9b9b9b;
+}

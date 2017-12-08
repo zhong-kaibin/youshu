@@ -25,6 +25,7 @@
     <image data-applet_activity="{{item.applet_activity}}" lazy-load="true" data-wxurl='{{item.url}}' data-index="{{index}}" bindtap='tapBanner' src="{{item.banner_url}}" mode="scaleToFill" class="slide-image" />
   </swiper-item>
 </swiper>
+<navigator url="/activity/home/home">活动页面</navigator>
 
 <!-- topList  -->
 <view wx:if="{{top_list.length > 3}}" class='top-list'>

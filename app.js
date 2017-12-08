@@ -70,7 +70,7 @@ App({
           console.log('loginSuccess', res.code)
           self.getAllUserInfo(function (user) {
             wx.request({
-              url: unit.getApi(`/user/oauth_login?platform=applet&s=${self.s}&v=${config.version}`),
+              url: unit.getApi(`/user/oauth_login?platform=applet&s=${self.s}&v=${config.version}&inviter_id=''`),
               method: "POST",
               header: {
                 "Content-Type": "application/x-www-form-urlencoded"

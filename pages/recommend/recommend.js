@@ -11,7 +11,8 @@ Page({
   onLoad: function (options) {
   },
   onShow: function () {
-    fetchConfig(config => {
+    fetchConfig(config => {   //获取 channel-list
+        console.log('recommend-15',config);
       if (this.timestamp != config.timestamp) {
         this.timestamp = config.timestamp
         this.setData({
@@ -19,7 +20,7 @@ Page({
           channel_code: config.channel_types[0].channel_code
         })
         //展示 bind pop bug: 因为要判断登陆信息存在是否绑定，所以在一个接口请求完再调用
-        this.showBindPop()
+        this.showBindPop() 
         this.getJSON()
       }
     }, true)
@@ -75,7 +76,11 @@ Page({
   //   this.getJSON()
   // },
   tapChannel: function (e) {
+      console.log('79', e);
+      
     var { channel_code } = e.currentTarget.dataset
+    console.log('82', channel_code);
+    
     this.setData({
       channel_code
     })

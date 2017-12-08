@@ -1,0 +1,366 @@
+page {
+    height: 100%;
+    background-color: #fbedcb;
+    padding: 20rpx;
+    box-sizing: border-box
+}
+
+.deep-gray {
+    color: #333333;
+}
+
+.main-top {
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    border: 4rpx solid #f7dca2;
+    border-radius: 16rpx;
+}
+
+.main>view:not(:last-child) {
+    margin-bottom: 20rpx;
+}
+
+.main-top .main-top-in {
+    flex: 1;
+    text-align: center;
+    color: #333333;
+    font-size: 30rpx;
+    padding-bottom: 20rpx;
+}
+
+.main-top-in .text1 {
+    padding-top: 40rpx;
+    padding-bottom: 30rpx;
+    display: block;
+}
+
+.main-top-in .text2 {
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #cd4b4b;
+}
+
+.main-top-in .text2 text {
+    font-size: 64rpx;
+}
+
+.get-reword {
+    color: #cd4b4b;
+    font-size: 26rpx;
+    text-decoration: underline;
+    text-align: right;
+    padding-top: 30rpx;
+    padding-right: 30rpx;
+}
+
+
+/* 怎样分享 */
+
+.main-howShare {
+    background-color: #fff;
+    border: 4rpx solid #f7dca2;
+    border-radius: 16rpx;
+    padding-top: 30rpx;
+    padding-bottom: 20rpx;
+}
+
+.main-howShare-in {
+    display: flex;
+    justify-content: space-around;
+}
+
+.main-howShare-top {
+    flex: 1;
+    text-align: center;
+    padding: 0 15rpx
+}
+
+.main-howShare-top .share {
+    text-align: center;
+}
+
+.main-howShare-top .text1 {
+    display: block;
+    margin-top: 24rpx;
+    font-size: 24rpx;
+    color: #333333;
+}
+
+.main-howShare-in:nth-child(2) .text1 {
+    padding: 0 20rpx;
+}
+
+.main-howShare-top image {
+    width: 97rpx;
+    height: 97rpx;
+}
+
+.how-send {
+    color: #cd4b4b;
+    font-size: 26rpx;
+    text-decoration: underline;
+    padding-right: 30rpx;
+}
+
+
+/* 推荐小说  列表 */
+
+.story-list {
+    background-color: #fff;
+    border: 4rpx solid #f7dca2;
+    border-radius: 16rpx;
+    padding-top: 26rpx;
+}
+
+.story-bgi {
+    display: flex;
+    justify-content: center;
+}
+
+.story-list .story-bgi .h2 {
+    display: block;
+    width: 250rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-weight: 600;
+    color: #333333;
+    font-size: 40rpx;
+}
+
+.story-tab {
+    margin-top: 30rpx;
+    white-space: nowrap;
+    background-color: #f5f5f5;
+}
+
+.story-tab .story-tab-item {
+    width: 33.333333%;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    color: #9b9b9b;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+}
+
+.story-tab .story-tab-item.active {
+    color: #cd4b4b;
+}
+
+.story-tab-item.active text {
+    height: 5rpx;
+    background-color: #cd4b4b;
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+    bottom: 0;
+    padding: 0 40rpx;
+    box-sizing: border-box;
+}
+
+.story-list-ul {
+    padding: 0 26rpx;
+}
+
+.story-item {
+    display: flex;
+    padding: 42rpx 0;
+}
+
+.story-item:not(:last-child) {
+    border-bottom: 1px dashed #eadbb6;
+}
+
+.story-item-l {
+    height: 212rpx;
+}
+
+.story-item-l image {
+    width: 160rpx;
+    height: 212rpx;
+}
+
+.story-item-r {
+    flex: 1;
+    display: flex;
+}
+
+.story-item-r .story-item-r-content {
+    flex: 2;
+    padding-left: 30rpx;
+    box-sizing: border-box;
+}
+
+.story-item-r .story-item-r-content .h3-title {
+    font-size: 34rpx;
+    font-weight: 600;
+}
+
+.story-item-r-content .story-author {
+    padding-top: 22rpx;
+    height: 64rpx;
+    color: #9b9b9b;
+    font-size: 26rpx;
+    display: flex;
+}
+
+.story-item-r-content .story-author image {
+    width: 24rpx;
+    height: 28rpx;
+    margin-right: 16rpx;
+}
+
+.story-item-r-content .story-author text {
+    flex: 1;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: -1rpx
+}
+
+.story-item-r-content .story-passage {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    color: #9b9b9b;
+    font-size: 26rpx;
+    line-height: 42rpx;
+}
+
+.story-item-r-share {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.story-item-r-share image {
+    width: 154rpx;
+    height: 154rpx;
+}
+
+
+/* 活动说明 */
+
+.activity-des {
+    background-color: #fff;
+    border: 4rpx solid #f7dca2;
+    border-radius: 16rpx;
+    padding: 30rpx 45rpx 40rpx 20rpx;
+    margin-bottom: 68rpx;
+}
+
+.activity-des .h2 {
+    display: block;
+    font-weight: 600;
+    font-size: 34rpx;
+    height: 68rpx;
+}
+
+.activity-des-ul .li {
+    font-size: 28rpx;
+    line-height: 48rpx;
+}
+
+
+/* 分享好友和朋友圈  */
+
+.popup-overlay,
+.popup-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+.popup-container-visible .popup-overlay {
+    opacity: 1;
+}
+
+.popup-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
+}
+
+.popup-modal.active {
+    transform: none;
+}
+
+.popup-bottom .popup-modal {
+    height: auto;
+}
+
+.popup-modal {
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+    bottom: 0;
+    border-radius: 0;
+    /* opacity: 0.6; */
+    color: #3d4145;
+    height: 100%;
+    background: #ffffff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: all 1s
+}
+
+.modal-content {
+    display: flex;
+}
+
+.modal-content-in {
+    flex: 1;
+    font-size: 30rpx;
+    color: #9b9b9b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40rpx;
+    border-radius: 0;
+    border: none;
+    background-color:transparent;    
+    line-height: normal;
+    padding-left: 0;
+    padding-right: 0;
+    position: static
+}
+.modal-content-in::after {
+    width: 0;
+    height: 0;
+    position: static;
+    transform: none;
+    border-radius: 0;
+    opacity: 0;
+}
+
+.modal-content-in image {
+    width: 120rpx;
+    height: 120rpx;
+    display: block;
+    margin-bottom: 20rpx;
+}
+
+.popup-cancle {
+    display: block;
+    width: 100vw;
+    height: 98rpx;
+    line-height: 98rpx;
+    text-align: center;
+    font-size: 34rpx;
+    margin-top: 40rpx;
+    border-top: 1px solid #f5f5f5;
+}

@@ -1,0 +1,19 @@
+.main {
+  height: 100%;
+  overflow-y: hidden
+}
+
+.howShare-img-1{
+    height: 1067rpx
+}
+.howShare-img-2  {
+    height: 863rpx;
+}
+.howShare-img-1 image {
+    width: 100%;
+    height: 1067rpx
+}
+.howShare-img-2 image{
+    width: 100%;
+    height: 863rpx;
+}

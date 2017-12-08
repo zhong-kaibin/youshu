@@ -1,0 +1,113 @@
+<view class="main">
+    <view class="main-top">
+        <view class="main-top-in main-top-l">
+            <text class="text1">邀请好友</text>
+            <text class="text2">
+                <text>3</text>人</text>
+        </view>
+        <view class="main-top-in main-top-r">
+            <text class="text1">累积获得</text>
+            <text class="text2">
+                <text>80</text>阅币</text>
+            <view>
+                <navigator url="/activity/gift/gift" class="get-reword" hover-class="none">获得奖励</navigator>
+            </view>
+        </view>
+    </view>
+
+    <view class="main-howShare">
+        <view class="main-howShare-in">
+            <view class="main-howShare-top">
+                <view class="share">
+                    <image src="../../image/activity/share.png"></image>
+                    <text class="text1">分享喜欢的小说给好友</text>
+                </view>
+
+            </view>
+            <view class="main-howShare-top">
+                <view class="share">
+                    <image src="../../image/activity/read-bi.png"></image>
+                    <text class="text1">好友首货登得100阅币，你得到30阅币</text>
+                </view>
+
+            </view>
+            <view class="main-howShare-top">
+                <view>
+                    <image src="../../image/activity/red-envelopes.png"></image>
+                    <text class="text1">累积邀请一定数量可获得现金红包</text>
+                </view>
+            </view>
+        </view>
+        <view>
+            <navigator url="/activity/howToShare/howToShare" class="how-send" class="get-reword" hover-class="none">如何转发分享？</navigator>
+        </view>
+    </view>
+
+    <!-- 推荐小说  列表 -->
+    <view class="story-list">
+        <view class="story-bgi">
+            <text class="h2" style="background-image: url(../../image/activity/short-title.png);">推荐小说</text>
+        </view>
+        <scroll-view class="story-tab" scroll-x="true">
+            <view class="story-tab-item {{storyIndex === index && 'active'}}" wx:key="item" data-index="{{index}}" bind:tap="tabToggle"
+                wx:for="{{tabList}}">{{item}}
+                <text></text>
+            </view>
+            <!-- <text class="story-tab-item active">男生偏爱<text></text></text> -->
+            <!-- <view class="story-tab-item">女生偏爱<text></text></view>
+                <view class="story-tab-item">漫画系列<text></text></view> -->
+        </scroll-view>
+        <view class="story-list-ul">
+            <block wx:for="{{storyList[storyIndex].list}}" wx:key="{{item.book_id}}">
+                <view class="story-item">
+                    <view class="story-item-in story-item-l">
+                        <image src="{{item.cover}}"></image>
+                    </view>
+                    <view class="story-item-in story-item-r">
+                        <navigator url="{{'/pages/bookDetail/bookDetail?book_id=' + item.book_id}}" class="story-navigator" hover-class="none">
+                            <view class="story-item-r-content">
+                                <text class="h3-title deep-gray">{{item.book_name}}</text>
+                                <view class="story-author">
+                                    <image src="../../image/activity/user.png"></image>
+                                    <text>{{item.author}}</text>
+                                </view>
+                                <text class="story-passage">{{item.intro}}</text>
+                            </view>
+                        </navigator>
+                        <view class="story-item-r-share" id="{{item.book_id}}" bind:tap="quickShare">
+                            <image src="../../image/activity/quick-share.png"></image>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+
+    <!-- 活动说明 -->
+    <view class="activity-des deep-gray">
+        <text class="h2">活动说明</text>
+        <view class="activity-des-ul">
+            <view class="li">1、本活动有效期2017.10.18~2017.11.17</view>
+            <view class="li">2、活动期间，已绑定手机的用户可在活动页面领取288阅币礼包（手机登录用户自动绑定对应手机）</view>
+            <view class="li">3、本活动最终解释权归口袋有书团队所有</view>
+        </view>
+    </view>
+
+    <!-- 分享好友和朋友圈 -->
+    <view class="popup-container popup-bottom popup-container-visible" hidden="{{flagPopup}}">
+        <view class="popup-overlay" bind:tap="closePopup" hidden="{{flagPopup}}"></view>
+        <view class="popup-modal {{!flagPopup && 'active'}}">
+            <view class="modal-content">
+              <button open-type="share" class="modal-content-in modal-content-l">
+                    <image src="../../image/activity/weixin.png"></image>
+                    <text>分享好友</text>
+              </button>
+              <view class="modal-content-in modal-content-r" bind:tap="shareFirendsCirle">
+                  <image src="../../image/activity/friends-circle.png"></image>
+                  <text>分享朋友圈</text>
+                </view>
+            </view>
+            <text class="popup-cancle deep-gray" bind:tap="closePopup"> 取消 </text>
+        </view>
+    </view>
+</view>
