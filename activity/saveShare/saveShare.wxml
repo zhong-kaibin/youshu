@@ -1,0 +1,26 @@
+<!-- 弹出保存图片 -->
+<view id="full" class="save-main">
+    <view class="save-main-in">
+        <text class="h2">{{getConent.chapter_name}}</text>
+        <view class="article">
+            <text>{{bookContent}}</text>
+        </view>
+        <text class="book-name">想看这本《{{getConent.book_name}}》的后续么</text>
+        <view class="erwerma">
+            <view class="text">
+                    <text> 长按识别小程序码 </text>
+                    <text> 继续阅读这本小说</text>
+            </view>
+            <image></image>
+        </view>
+    </view>
+
+    <view class="saveImg">
+        <view class="saveImg-in saveImg-l">
+            <text>保存图片分享到朋友圈</text>
+        </view>
+        <view class="saveImg-in saveImg-r">
+            <text bindtap="saveBtn">保存图片</text>
+        </view>
+    </view>
+</view>

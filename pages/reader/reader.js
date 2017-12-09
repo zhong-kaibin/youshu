@@ -196,6 +196,8 @@ Page({
   fetchContent: function (cb) {
     var self = this
     var { book_id, volume_id, chapter_id } = this.data
+    console.log('222222222222222222222',this.data);
+    
     unit.get(`/book/get_content?book_id=${book_id}&volume_id=${volume_id}&chapter_id=${chapter_id}`, function (res) {
       var content = res.data.content.replace(/&quot;|&nbsp;/g, '')
       if (res.data.content.indexOf('<p>') != -1) {

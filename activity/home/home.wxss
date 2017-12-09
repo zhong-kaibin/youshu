@@ -123,6 +123,7 @@ page {
     width: 250rpx;
     height: 56rpx;
     line-height: 56rpx;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAA3CAMAAAASRKdlAAAAZlBMVEUAAAD77cv33KL77cv77cv33KL33KL33KL33KL33KL33KL33KL77cv33KL33KL33KL33KL33KL33KL33KL33KL77cv33KL33KL33KL33KL33KL33KL33KL33KL33KL33KL33KL77cu2IL+7AAAAIHRSTlMA8uutJwiF1EgC/mXv+rgZ9poqFL4loXwx2rB9XkDBbTXMVtEAAAFMSURBVGje7dtZkoJAEEXRxyCjIpPi2J3uf5M9QFIBKAvIx/nyN4Og4lZZYBBlQiKLMOULDR9ThdC4YSoRGk9MpbGQiDGXC4kH5nYkC52/w8JdKHRYakohUDZ4oxICFd6pCYIuq9Hjy5oCA76sSTCgy5o4RY8va3IM6LLG5cxSJKZF+Ox4EMMOR6w4i2FnrLmIYResasWsFgO+rEmwLr2KUdcUc6fA84IT1LcYlS8mDvevX/vQetaMOeMmDl7/AutZE0GNE3v9D8941riccRMvRseXGNRiObo+fp6nrhOPLz3Pu+4mDv+W+tD8xnVc4XViouOKHIrukCpOt4Yn3LkVoN2vZzVoT2kq0J7NlQ1oT2Tv2M7hiXJG5Xw547KGL2dUgu3/9e1WBf1dGuIbVJ1Q6PhyxmUNX86oB1/OqJgwZ9STL2fUbfv2hfiLpx+KvBRYNxca1QAAAABJRU5ErkJggg==);
     background-position: center center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -245,7 +246,6 @@ page {
     height: 154rpx;
 }
 
-
 /* 活动说明 */
 
 .activity-des {
@@ -365,54 +365,3 @@ page {
     border-top: 1px solid #f5f5f5;
 }                               
 
-/* 保存图片到相册 */
-.save-popup__overlay, .save-popup__container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    overflow: hidden
-}
-.save-popup__container--visible .save-popup__overlay {
-    opacity: 1;
-}
-
-.save-popup__overlay {
-    background-color: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-    -webkit-transition: opacity .3s;
-    transition: opacity .3s;
-}
-.save-popup__modal image {
-    width: 100%;
-    height: 100%;
-}
-
-.save-popup__container--visible .save-popup__modal {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
-.save-popup__modal {
-    width: 100%;
-    position: absolute;
-    z-index: 100;
-    bottom: 0;
-    border-radius: 0;
-    opacity: 0.6;
-    color: #3d4145;
-    -webkit-transition-duration: .3s;
-    transition-duration: .3s;
-    height: 100%;
-    background: #EFEFF4;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-    -webkit-transition-property: opacity, -webkit-transform;
-    transition-property: opacity, -webkit-transform;
-    transition-property: transform, opacity;
-    transition-property: transform, opacity, -webkit-transform;
-    overflow: hidden
-}

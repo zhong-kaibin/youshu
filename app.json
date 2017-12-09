@@ -1,13 +1,14 @@
 {
     "pages": [
         "pages/recommend/recommend",
+        "activity/saveShare/saveShare",
         "activity/home/home",
         "activity/mind/result",        
         "activity/gift/gift",        
         "activity/howToShare/howToShare",
         "pages/chapterList/chapterList",
-        "pages/reader/reader",
         "pages/readerComic/reader",
+        "pages/reader/reader",
         "pages/search/search",
         "pages/bookDetail/bookDetail",
         "pages/recharge/recharge",

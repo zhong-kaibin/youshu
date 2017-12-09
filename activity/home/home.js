@@ -9,7 +9,10 @@ Page({
         storyIndex: 0,
         sex: 1,
         flagPopup: true,
+        sourceLink: 'https://ssl.kdyoushu.com/applet/mind_test/m1.png',
         book_id: '',
+        volume_id: '',
+        chapter_id: '',
         book_name: ''
     },
     onLoad(option) {
@@ -26,7 +29,7 @@ Page({
         //   random
         // })
         this.getJSON();
-        this.getInvite()
+        // this.getInvite()
     },
     getJSON(cb) {
         network.fetch('/activity/invite/share_book_list', {
@@ -75,10 +78,10 @@ Page({
         })
     },
     quickShare(event) {
-        console.log('book_id',event, event.currentTarget.id);
+        console.log('book_id',event, event.currentTarget.dataset.bookId);
         this.setData({
             flagPopup: false,
-            book_id: event.currentTarget.id,
+            book_id: event.currentTarget.dataset.bookId,
             book_name: event.currentTarget.dataset.bookname
         })        
         console.log('book_name', this.data.book_name);
@@ -86,7 +89,7 @@ Page({
     },
     closePopup(){
         this.setData({
-            flagPopup: true
+            flagPopup: true,
         })
     },
     shareFirendsCirle(){
@@ -102,7 +105,11 @@ Page({
         // wx.previewImage({
         //   urls: [url]
         // })
-        console.log('url', url);
+        // this.setData({
+        //     flagPopup: true,
+        //     flagSavePopup: true
+        // })
+        // console.log('url', url);
         
     },
     // 监听用户下拉刷新

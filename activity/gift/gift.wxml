@@ -13,7 +13,7 @@
     </view>    
     <view class="gift">
         <view class="gift-bgi">
-            <text class="h2" style="background-image: url(../../image/activity/short-title.png);">神秘礼包</text>
+            <text class="h2">神秘礼包</text>
         </view>
         <view class="red-envelopes">
             <image src="../../image/activity/gift.png"></image>
@@ -29,7 +29,7 @@
     <!-- 邀请我的好友 -->
     <view class="invite-list">
         <view class="invite-title">
-            <text class="h2" style="background-image: url(../../image/activity/long-title.png);">邀请我的好友</text>
+            <text class="h2">邀请我的好友</text>
         </view>
         <view class="invite-ul">
             <view class="invite-ul-li">

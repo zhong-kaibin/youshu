@@ -46,7 +46,7 @@
     <!-- 推荐小说  列表 -->
     <view class="story-list">
         <view class="story-bgi">
-            <text class="h2" style="background-image: url(../../image/activity/short-title.png);">推荐小说</text>
+            <text class="h2">推荐小说</text>
         </view>
         <scroll-view class="story-tab" scroll-x="true">
             <view class="story-tab-item {{storyIndex === index && 'active'}}" wx:key="item" data-index="{{index}}" bind:tap="tabToggle"
@@ -74,7 +74,10 @@
                                 <text class="story-passage">{{item.intro}}</text>
                             </view>
                         </navigator>
-                        <view class="story-item-r-share" id="{{item.book_id}}" data-bookName="{{item.book_name}}" bind:tap="quickShare">
+                        <view class="story-item-r-share"
+                                data-book-id="{{item.book_id}}" 
+                                data-bookName="{{item.book_name}}"
+                                bind:tap="quickShare">
                             <image src="../../image/activity/quick-share.png"></image>
                         </view>
                     </view>
@@ -102,24 +105,23 @@
                     <image src="../../image/activity/weixin.png"></image>
                     <text>分享好友</text>
               </button>
-              <view class="modal-content-in modal-content-r" bind:tap="shareFirendsCirle">
+              <navigator class="modal-content-in modal-content-r" url="{{'/activity/saveShare/saveShare?book_id='+book_id}}">
                   <image src="../../image/activity/friends-circle.png"></image>
                   <text>分享朋友圈</text>
-                </view>
+               </navigator>
             </view>
             <text class="popup-cancle deep-gray" bind:tap="closePopup"> 取消 </text>
         </view>
     </view>
-
-    <!-- 弹出保存图片 -->
-    <!-- <view id="full" class="save-popup__container save-popup__container--visible">
-            <view class="save-popup__overlay"></view>
-            <view class="save-popup__modal">
-                <image src="https://ssl.kdyoushu.com/applet/mind_test/m1.png"></image>
-            </view>
+ <!-- 弹出保存图片 -->
+    <!-- <view id="full" class="save-popup__container save-popup__container--visible" wx:if="{{flagSavePopup}}">
+        <view class="save-popup__overlay" hidden="{{flagSavePopup}}"></view>
+        <view class="save-popup__modal">
+            <image src="{{sourceLink}}" bind:tap="closePopup"></image>
             <view class="saveImg">
-                <view class="saveImg-l"><text></text>t></text>t></text>t></text>t></text>t>保存图片分享到朋友圈</text></view>
-                <view class="saveImg-r"><button></button>n>保存图片</button></view>
+                    <view class="saveImg-in saveImg-l"><text>保存图片分享到朋友圈</text></view>
+                    <view class="saveImg-in saveImg-r"><text bindtap="saveBtn" data-url="{{sourceLink}}">保存图片</text></view>
             </view>
+        </view>
     </view>   -->
 </view>
