@@ -2,8 +2,8 @@
     "pages": [
         "pages/recommend/recommend",
         "activity/home/home",
-        "activity/gift/gift",        
         "activity/mind/result",        
+        "activity/gift/gift",        
         "activity/howToShare/howToShare",
         "pages/chapterList/chapterList",
         "pages/reader/reader",

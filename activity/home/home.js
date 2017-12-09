@@ -1,5 +1,5 @@
 const network = require('../../utils/network.js')
-import data from '../mind/data.js'
+// import data from './homeData.js'
 import unit from '../../utils/util.js'
 Page({
     storyListSave: [],
@@ -15,15 +15,16 @@ Page({
     onLoad(option) {
         console.log('这是参数',option);
         
-        let sex = unit.getUserInfo().sex
-        sex = sex == 2? 2 : 1
-        let results = sex == 1 ? data.result_man : data.result_women
-        let random = Math.floor(Math.random() * 10)
-        this.setData({
-          result: results[random],
-          sex,
-          random
-        })
+        // let sex = unit.getUserInfo().sex
+        // sex = sex == 2? 2 : 1
+        // let results = sex == 1 ? data.result_man : data.result_women
+        // console.log('results-20', results);
+        // let random = Math.floor(Math.random() * 10)
+        // this.setData({
+        //   result: results[random],
+        //   sex,
+        //   random
+        // })
         this.getJSON();
         this.getInvite()
     },
@@ -38,7 +39,9 @@ Page({
                         list: res[key]
                     })
                 }
+
                 // console.log('this.storyListSave',this.storyListSave);
+                [this.storyListSave[0], this.storyListSave[2]] = [this.storyListSave[2], this.storyListSave[0]]
                 this.setData({
                     storyList: this.storyListSave
                 })
@@ -87,16 +90,18 @@ Page({
         })
     },
     shareFirendsCirle(){
-        var url = 'https://ssl.kdyoushu.com/applet/mind_test/'
-        var {sex, random} = this.data
-        if(sex == 1){
-          url += 'm' + random + '.png'
-        }else{
-          url += 'w' + random + '.png'
-        }
-        wx.previewImage({
-          urls: [url]
-        })
+        // var url = 'https://ssl.kdyoushu.com/applet/mind_test/'
+        // var {sex, random} = this.data
+        // if(sex == 1){
+        //   url += 'm' + random + '.png'
+        // }else{
+        //   url += 'w' + random + '.png'
+        // }
+        // console.log('===========');
+        // console.log('多少数据', this.data);  
+        // wx.previewImage({
+        //   urls: [url]
+        // })
         console.log('url', url);
         
     },

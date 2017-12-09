@@ -25,8 +25,8 @@
     <image data-applet_activity="{{item.applet_activity}}" lazy-load="true" data-wxurl='{{item.url}}' data-index="{{index}}" bindtap='tapBanner' src="{{item.banner_url}}" mode="scaleToFill" class="slide-image" />
   </swiper-item>
 </swiper>
-<navigator url="/activity/home/home">活动页面</navigator>
 
+<navigator url="/activity/home/home">活动页面</navigator>
 <!-- topList  -->
 <view wx:if="{{top_list.length > 3}}" class='top-list'>
   <view class="flex-wrp" style="flex-direction:row;">
@@ -34,7 +34,7 @@
       <image src="{{item.icon_url}}" class="flex-icon" />
       <text class="flex-text">{{item.title}}</text>
     </view>
-  </view>
+</view>
 </view>
 <!-- 专题 -->
 <view class="page-section">

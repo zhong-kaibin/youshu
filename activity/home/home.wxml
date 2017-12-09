@@ -110,4 +110,16 @@
             <text class="popup-cancle deep-gray" bind:tap="closePopup"> 取消 </text>
         </view>
     </view>
+
+    <!-- 弹出保存图片 -->
+    <!-- <view id="full" class="save-popup__container save-popup__container--visible">
+            <view class="save-popup__overlay"></view>
+            <view class="save-popup__modal">
+                <image src="https://ssl.kdyoushu.com/applet/mind_test/m1.png"></image>
+            </view>
+            <view class="saveImg">
+                <view class="saveImg-l"><text></text>t></text>t></text>t></text>t></text>t>保存图片分享到朋友圈</text></view>
+                <view class="saveImg-r"><button></button>n>保存图片</button></view>
+            </view>
+    </view>   -->
 </view>
